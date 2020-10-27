@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CylinderTest {
 
-
     @Test
     void emptyCylinder(){
         Cylinder cylinder = new Cylinder();
