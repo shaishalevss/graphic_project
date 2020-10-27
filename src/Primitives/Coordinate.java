@@ -1,4 +1,4 @@
-package com.company.Primitives;
+package Primitives;
 
 public class Coordinate {
     private double _coordinate;

@@ -1,6 +1,4 @@
-package com.company.Primitives;
-
-import java.awt.*;
+package Primitives;
 
 public class Main {
 

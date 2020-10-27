@@ -1,4 +1,4 @@
-package com.company.Primitives;
+package Primitives;
 
 import java.util.Objects;
 
@@ -55,11 +55,6 @@ public class Point3D {
     @Override
     public boolean equals(Object otherPoint) {
         return (this._x==((Point3D)otherPoint).get_x()&&this._y==((Point3D)otherPoint).get_y()&&this._z==((Point3D)otherPoint).get_z());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(_x, _y, _z);
     }
 
     @Override
