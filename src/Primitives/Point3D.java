@@ -1,7 +1,5 @@
 package Primitives;
 
-import java.util.Objects;
-
 public class Point3D {
     protected Coordinate _x;
     protected Coordinate _y;

@@ -17,7 +17,7 @@ class Point3DTest {
     }
 
     @Test
-    void setCoordinate(){
+    void setPoint3D(){
         Point3D point = new Point3D();
         point.setX(new Coordinate(2.0));
         point.setY(new Coordinate(5.0));

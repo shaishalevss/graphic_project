@@ -43,7 +43,7 @@ public class Plane extends Geometry {
     //equals methods override
     @Override
     public boolean equals(Object otherPlane) {
-        return (this._q==((Plane)otherPlane).getQ()&&this._n==((Plane)otherPlane).getN());
+        return (this._q.equals(((Plane)otherPlane).getQ())&&this._n.equals(((Plane)otherPlane).getN()));
     }
 
     @Override
