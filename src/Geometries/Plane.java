@@ -40,7 +40,7 @@ public class Plane extends AbstractGeometry{
         this._n = _n;
     }
 
-    //equals methods
+    //equals methods override
     @Override
     public boolean equals(Object otherPlane) {
         return (this._q==((Plane)otherPlane).get_q()&&this._n==((Plane)otherPlane).get_n());

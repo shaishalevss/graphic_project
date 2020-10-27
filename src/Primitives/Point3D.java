@@ -28,6 +28,8 @@ public class Point3D {
         this._z = otherPoint.get_z();
     }
 
+
+    //getters and setters
     public Coordinate get_x() {
         return new Coordinate(_x);
     }
