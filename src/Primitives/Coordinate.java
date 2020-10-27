@@ -3,7 +3,6 @@ package Primitives;
 public class Coordinate {
     private double _coordinate;
 
-    //constructors
     public Coordinate(double coordinate) {
         this._coordinate = coordinate;
     }
@@ -13,22 +12,20 @@ public class Coordinate {
     }
 
     public Coordinate(Coordinate otherCoordinate) {
-        this._coordinate = otherCoordinate.getCoordinate();
+        this._coordinate = otherCoordinate.get_coordinate();
     }
 
-    //getters
-    public double getCoordinate() {
+    public double get_coordinate() {
         return _coordinate;
     }
 
-    //setters
-    public void setCoordinate(double _coordinate) {
+    public void set_coordinate(double _coordinate) {
         this._coordinate = _coordinate;
     }
 
     @Override
     public boolean equals(Object other) {
-        return (this._coordinate ==((Coordinate)other).getCoordinate());
+        return (this._coordinate ==((Coordinate)other).get_coordinate());
     }
 
     @Override
