@@ -15,23 +15,22 @@ public class Polygon extends AbstractGeometry{
     }
 
     public Polygon(Polygon otherPolygon){
-        this._points = otherPolygon.getPoints();
-
+        this._points = otherPolygon.get_points();
     }
 
     //getters
-    public List<Point3D> getPoints() {
+    public List<Point3D> get_points() {
         return _points;
     }
 
     //setters
-    public void setPoints(List<Point3D> _points) {
+    public void set_points(List<Point3D> _points) {
         this._points = _points;
     }
 
     //equal method override
     @Override
     public boolean equals(Object otherPolygon) {
-        return (this._points==((Polygon)otherPolygon).getPoints());
+        return (this._points.equals(((Polygon)otherPolygon).get_points()));
     }
 }

@@ -20,22 +20,22 @@ public class Triangle extends AbstractGeometry{
     }
 
     public Triangle(Triangle otherTriangle){
-        this._p1 = otherTriangle.get_p1();
-        this._p2 = otherTriangle.get_p2();
-        this._p3 = otherTriangle.get_p3();
+        this._p1 = otherTriangle.getP1();
+        this._p2 = otherTriangle.getP2();
+        this._p3 = otherTriangle.getP3();
     }
 
 
     //getters
-    public Point3D get_p1() {
+    public Point3D getP1() {
         return _p1;
     }
 
-    public Point3D get_p2() {
+    public Point3D getP2() {
         return _p2;
     }
 
-    public Point3D get_p3() {
+    public Point3D getP3() {
         return _p3;
     }
 
@@ -56,7 +56,7 @@ public class Triangle extends AbstractGeometry{
     //equals override
     @Override
     public boolean equals(Object otherTriangle) {
-        return (this._p1==((Triangle)otherTriangle).get_p1()&&this._p2==((Triangle)otherTriangle).get_p2()&&this._p3==((Triangle)otherTriangle).get_p3());
+        return (this._p1.equals(((Triangle)otherTriangle).getP1())&&this._p2.equals(((Triangle)otherTriangle).getP2())&&this._p3.equals(((Triangle)otherTriangle).getP3()));
     }
 
 
