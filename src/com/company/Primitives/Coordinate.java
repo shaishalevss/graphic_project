@@ -1,22 +1,25 @@
 package com.company.Primitives;
 
 public class Coordinate {
-    double coordinate;
+    protected double _coordinate;
 
+    //constructors
     public Coordinate(double coordinate) {
-        this.coordinate = coordinate;
+        this._coordinate = coordinate;
     }
 
     public Coordinate() {
-        this.coordinate = 0.0;
+        this._coordinate = 0.0;
     }
 
+    //getters
     public double getCoordinate() {
-        return coordinate;
+        return _coordinate;
     }
 
+    //setters
     public void setCoordinate(double coordinate) {
-        this.coordinate = coordinate;
+        this._coordinate = coordinate;
     }
 
 //    @Override
@@ -24,8 +27,10 @@ public class Coordinate {
 //        return (this.coordinate ==((Coordinate)other).getCoordinate());
 //    }
 
+
+    //ToString
     @Override
     public String toString() {
-        return "Coordinate is " + coordinate;
+        return "Coordinate is " + _coordinate;
     }
 }
