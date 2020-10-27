@@ -18,12 +18,12 @@ class SceneTest {
     void emptyVector() {
         Scene scene = new Scene();
         assertEquals("Unknown", scene.getName());
-        assertEquals(true, scene.getGeometries().isEmpty());
+        assertTrue(scene.getGeometries().isEmpty());
     }
 
     @Test
     void setSceneAndAddGeometry() {
-        ArrayList<Geometry> sceneList = new ArrayList<Geometry>();
+        ArrayList<Geometry> sceneList = new ArrayList<>();
         sceneList.add(new Plane(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)),new Vector(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)))));
         sceneList.add(new Plane(new Point3D(new Coordinate(5.0),new Coordinate(7.0),new Coordinate(8.0)),new Vector(new Point3D(new Coordinate(11.0),new Coordinate(52.0),new Coordinate(23.0)))));
 
@@ -41,19 +41,19 @@ class SceneTest {
 
     @Test
     void equalsMethod() {
-        ArrayList<Geometry> sceneList1 = new ArrayList<Geometry>();
+        ArrayList<Geometry> sceneList1 = new ArrayList<>();
         sceneList1.add(new Plane(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)),new Vector(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)))));
         sceneList1.add(new Plane(new Point3D(new Coordinate(5.0),new Coordinate(7.0),new Coordinate(8.0)),new Vector(new Point3D(new Coordinate(11.0),new Coordinate(52.0),new Coordinate(23.0)))));
 
         Scene scene1 = new Scene();
         scene1.setGeometries(sceneList1);
 
-        ArrayList<Geometry> sceneList2 = new ArrayList<Geometry>();
+        ArrayList<Geometry> sceneList2 = new ArrayList<>();
         sceneList2.add(new Plane(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)),new Vector(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)))));
         sceneList2.add(new Plane(new Point3D(new Coordinate(5.0),new Coordinate(7.0),new Coordinate(8.0)),new Vector(new Point3D(new Coordinate(11.0),new Coordinate(52.0),new Coordinate(23.0)))));
 
         Scene scene2 = new Scene();
         scene2.setGeometries(sceneList2);
-        assertEquals(true, scene1.equals(scene2));
+        assertTrue(scene1.equals(scene2));
     }
     }
