@@ -15,11 +15,11 @@ public class Polygon extends AbstractGeometry{
     }
 
     public Polygon(Polygon otherPolygon){
-        this._points = otherPolygon.get_points();
+        this._points = otherPolygon.getPoints();
     }
 
     //getters
-    public List<Point3D> get_points() {
+    public List<Point3D> getPoints() {
         return _points;
     }
 
@@ -31,6 +31,6 @@ public class Polygon extends AbstractGeometry{
     //equal method override
     @Override
     public boolean equals(Object otherPolygon) {
-        return (this._points.equals(((Polygon)otherPolygon).get_points()));
+        return (this._points.equals(((Polygon)otherPolygon).getPoints()));
     }
 }
