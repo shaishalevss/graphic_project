@@ -6,7 +6,6 @@ import Primitives.Point3D;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +19,7 @@ class PolygonTest {
 
     @Test
     void setPolygon(){
-        List<Point3D> myPolygonTestList = new ArrayList<Point3D>();
+        ArrayList<Point3D> myPolygonTestList = new ArrayList<Point3D>();
         myPolygonTestList.add(new Point3D(new Coordinate(1.0), new Coordinate(2.0), new Coordinate(3.0)));
         myPolygonTestList.add(new Point3D(new Coordinate(4.0), new Coordinate(5.0), new Coordinate(6.0)));
         myPolygonTestList.add(new Point3D(new Coordinate(7.0), new Coordinate(8.0), new Coordinate(9.0)));
@@ -32,12 +31,12 @@ class PolygonTest {
 
     @Test
     void equalsMethod(){
-        List<Point3D> myPolygonTestList1 = new ArrayList<Point3D>();
+        ArrayList<Point3D> myPolygonTestList1 = new ArrayList<Point3D>();
         myPolygonTestList1.add(new Point3D(new Coordinate(1.0), new Coordinate(2.0), new Coordinate(3.0)));
         myPolygonTestList1.add(new Point3D(new Coordinate(4.0), new Coordinate(5.0), new Coordinate(6.0)));
         myPolygonTestList1.add(new Point3D(new Coordinate(7.0), new Coordinate(8.0), new Coordinate(9.0)));
 
-        List<Point3D> myPolygonTestList2 = new ArrayList<Point3D>();
+        ArrayList<Point3D> myPolygonTestList2 = new ArrayList<Point3D>();
         myPolygonTestList2.add(new Point3D(new Coordinate(1.0), new Coordinate(2.0), new Coordinate(3.0)));
         myPolygonTestList2.add(new Point3D(new Coordinate(4.0), new Coordinate(5.0), new Coordinate(6.0)));
         myPolygonTestList2.add(new Point3D(new Coordinate(7.0), new Coordinate(8.0), new Coordinate(9.0)));

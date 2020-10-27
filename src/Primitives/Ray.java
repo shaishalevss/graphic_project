@@ -1,7 +1,5 @@
 package Primitives;
 
-import java.util.Objects;
-
 public class Ray {
     protected Point3D _00P;
     protected Vector _direction;
