@@ -1,4 +1,4 @@
-package com.company.Primitives;
+package Primitives;
 
 import java.util.Objects;
 
