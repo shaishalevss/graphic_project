@@ -1,7 +1,7 @@
 package Geometries;
 import Primitives.Point3D;
 
-public class Triangle extends AbstractGeometry{
+public class Triangle extends Geometry {
     protected Point3D _p1;
     protected Point3D _p2;
     protected Point3D _p3;

@@ -1,7 +1,7 @@
 package Geometries;
 import Primitives.Ray;
 
-public class Cylinder extends AbstractGeometry{
+public class Cylinder extends Geometry {
     protected double _radius;
     protected Ray _axis;
     protected double _height;
@@ -51,7 +51,7 @@ public class Cylinder extends AbstractGeometry{
         this._height = _height;
     }
 
-    //equals methods
+    //equals method
     @Override
     public boolean equals(Object otherCylinder) {
         return (this._radius==((Cylinder)otherCylinder).getRadius()&&this._axis.equals(((Cylinder)otherCylinder).getAxis())&&this._height==((Cylinder)otherCylinder).getHeight());

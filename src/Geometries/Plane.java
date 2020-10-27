@@ -2,7 +2,7 @@ package Geometries;
 import Primitives.Point3D;
 import Primitives.Vector;
 
-public class Plane extends AbstractGeometry{
+public class Plane extends Geometry {
     protected Point3D _q;
     protected Vector _n;
 
