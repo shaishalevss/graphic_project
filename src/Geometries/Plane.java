@@ -18,32 +18,32 @@ public class Plane extends AbstractGeometry{
     }
 
     public Plane(Plane otherPlane){
-        this._q = otherPlane.get_q();
-        this._n = otherPlane.get_n();
+        this._q = otherPlane.getQ();
+        this._n = otherPlane.getN();
     }
 
     //getters
-    public Point3D get_q() {
-        return _q;
+    public Point3D getQ() {
+        return new Point3D(_q);
     }
 
-    public void set_q(Point3D _q) {
+    public void setQ(Point3D _q) {
         this._q = _q;
     }
 
     //setters
-    public Vector get_n() {
-        return _n;
+    public Vector getN() {
+        return new Vector(_n);
     }
 
-    public void set_n(Vector _n) {
+    public void setN(Vector _n) {
         this._n = _n;
     }
 
     //equals methods override
     @Override
     public boolean equals(Object otherPlane) {
-        return (this._q==((Plane)otherPlane).get_q()&&this._n==((Plane)otherPlane).get_n());
+        return (this._q.equals(((Plane)otherPlane).getQ())&&this._n.equals(((Plane)otherPlane).getN()));
     }
 
 }

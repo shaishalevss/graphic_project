@@ -12,5 +12,10 @@ public class Main {
         Point3D point = new Point3D();
 
         System.out.println(point);
+
+        Vector vector = new Vector();
+
+        System.out.println(vector);
+
     }
 }

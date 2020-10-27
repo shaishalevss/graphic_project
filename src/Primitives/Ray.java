@@ -1,7 +1,5 @@
 package Primitives;
 
-import java.util.Objects;
-
 public class Ray {
     protected Point3D _00P;
     protected Vector _direction;
@@ -17,27 +15,27 @@ public class Ray {
     }
 
     public Ray(Ray otherRay) {
-        this._direction = otherRay.get_direction();
+        this._direction = otherRay.getDirection();
     }
 
-    public Point3D get_00P() {
+    public Point3D get00P() {
         return new Point3D();
     }
 
-    public void set_00P(Point3D newPoint) {
+    public void set00P(Point3D newPoint) {
         this._00P = newPoint;
     }
 
-    public Vector get_direction() {
+    public Vector getDirection() {
         return new Vector(this._direction);
     }
 
-    public void set_direction(Vector _direction) {
+    public void setDirection(Vector _direction) {
         this._direction = _direction;
     }
 
     @Override
     public boolean equals(Object otherRay) {
-        return this._direction.equals(((Ray)otherRay).get_direction());
+        return this._direction.equals(((Ray)otherRay).getDirection());
     }
 }
