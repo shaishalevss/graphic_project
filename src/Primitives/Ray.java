@@ -47,6 +47,6 @@ public class Ray {
 
     @Override
     public String toString() {
-        return get00P() + " " + getDirection();
+        return get00P() + "" + getDirection();
     }
 }
