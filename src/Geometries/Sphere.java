@@ -44,4 +44,9 @@ public class Sphere extends AbstractGeometry{
     public boolean equals(Object otherSphere) {
         return (this._center.equals(((Sphere)otherSphere).getCenter())&&this._radius==((Sphere)otherSphere).getRadius());
     }
+
+    @Override
+    public String toString() {
+        return getCenter() + " " + getRadius();
+    }
 }

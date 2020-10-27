@@ -40,15 +40,15 @@ public class Triangle extends AbstractGeometry{
     }
 
     //setters
-    public void set_p1(Point3D _p1) {
+    public void setP1(Point3D _p1) {
         this._p1 = _p1;
     }
 
-    public void set_p2(Point3D _p2) {
+    public void setP2(Point3D _p2) {
         this._p2 = _p2;
     }
 
-    public void set_p3(Point3D _p3) {
+    public void setP3(Point3D _p3) {
         this._p3 = _p3;
     }
 
@@ -59,5 +59,8 @@ public class Triangle extends AbstractGeometry{
         return (this._p1.equals(((Triangle)otherTriangle).getP1())&&this._p2.equals(((Triangle)otherTriangle).getP2())&&this._p3.equals(((Triangle)otherTriangle).getP3()));
     }
 
-
+    @Override
+    public String toString() {
+        return getP1() + " " + getP2() + " " + getP3();
+    }
 }

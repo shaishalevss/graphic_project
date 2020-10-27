@@ -23,40 +23,41 @@ public class Point3D {
     }
 
     public Point3D(Point3D otherPoint) {
-        this._x = otherPoint.get_x();
-        this._y = otherPoint.get_y();
-        this._z = otherPoint.get_z();
+        this._x = otherPoint.getX();
+        this._y = otherPoint.getY();
+        this._z = otherPoint.getZ();
     }
 
 
-    //getters and setters
-    public Coordinate get_x() {
+    //getters
+    public Coordinate getX() {
         return new Coordinate(_x);
     }
 
-    public void set_x(Coordinate _x) {
-        this._x = _x;
-    }
-
-    public Coordinate get_y() {
+    public Coordinate getY() {
         return new Coordinate(_y);
     }
 
-    public void set_y(Coordinate _y) {
-        this._y = _y;
-    }
-
-    public Coordinate get_z() {
+    public Coordinate getZ() {
         return new Coordinate(_z);
     }
 
-    public void set_z(Coordinate _z) {
+    //setters
+    public void setX(Coordinate _x) {
+        this._x = _x;
+    }
+
+    public void setY(Coordinate _y) {
+        this._y = _y;
+    }
+
+    public void setZ(Coordinate _z) {
         this._z = _z;
     }
 
     @Override
     public boolean equals(Object otherPoint) {
-        return (this._x.equals(((Point3D)otherPoint).get_x())&&this._y.equals(((Point3D)otherPoint).get_y())&&this._z.equals(((Point3D)otherPoint).get_z()));
+        return (this._x.equals(((Point3D)otherPoint).getX())&&this._y.equals(((Point3D)otherPoint).getY())&&this._z.equals(((Point3D)otherPoint).getZ()));
     }
 
     @Override
