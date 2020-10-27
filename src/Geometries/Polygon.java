@@ -2,7 +2,7 @@ package Geometries;
 import Primitives.Point3D;
 import java.util.List;
 
-public class Polygon extends AbstractGeometry{
+public class Polygon extends Geometry {
     protected List<Point3D> _points;
 
     //constructors

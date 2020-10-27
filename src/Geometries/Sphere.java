@@ -1,7 +1,7 @@
 package Geometries;
 import Primitives.Point3D;
 
-public class Sphere extends AbstractGeometry{
+public class Sphere extends Geometry {
     protected Point3D _center;
     protected double _radius;
 
