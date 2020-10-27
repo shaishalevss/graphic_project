@@ -58,11 +58,6 @@ public class Point3D {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(_x, _y, _z);
-    }
-
-    @Override
     public String toString() {
         return "This point's coordinates are: ("+ _x + "," + _y + "," + _z + ").";
     }
