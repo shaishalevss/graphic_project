@@ -28,7 +28,7 @@ public class Vector {
 
     @Override
     public boolean equals(Object otherVector) {
-        return this._head==((Vector)otherVector).get_head();
+        return this._head.equals(((Vector)otherVector).get_head());
     }
 
     @Override
