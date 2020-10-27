@@ -1,6 +1,5 @@
 package Unittests;
 
-import Geometries.Cylinder;
 import Primitives.Coordinate;
 import Primitives.Point3D;
 import Primitives.Ray;
