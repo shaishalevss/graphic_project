@@ -1,5 +1,7 @@
 package com.company.Primitives;
 
+import java.awt.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,5 +10,9 @@ public class Main {
         Coordinate d = new Coordinate();
 
         System.out.println(d);
+
+        Point3D point = new Point3D();
+
+        System.out.println(point);
     }
 }

@@ -1,31 +1,35 @@
 package com.company.Primitives;
 
 public class Coordinate {
-    double coordinate;
+    private double _coordinate;
 
     public Coordinate(double coordinate) {
-        this.coordinate = coordinate;
+        this._coordinate = coordinate;
     }
 
     public Coordinate() {
-        this.coordinate = 0.0;
+        this._coordinate = 0.0;
     }
 
-    public double getCoordinate() {
-        return coordinate;
+    public Coordinate(Coordinate otherCoordinate) {
+        this._coordinate = otherCoordinate.get_coordinate();
     }
 
-    public void setCoordinate(double coordinate) {
-        this.coordinate = coordinate;
+    public double get_coordinate() {
+        return _coordinate;
     }
 
-//    @Override
-//    public boolean equals(Object other) {
-//        return (this.coordinate ==((Coordinate)other).getCoordinate());
-//    }
+    public void set_coordinate(double _coordinate) {
+        this._coordinate = _coordinate;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (this._coordinate ==((Coordinate)other).get_coordinate());
+    }
 
     @Override
     public String toString() {
-        return "Coordinate is " + coordinate;
+        return ""+_coordinate;
     }
 }
