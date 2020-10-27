@@ -17,31 +17,31 @@ public class Sphere extends AbstractGeometry{
     }
 
     public Sphere(Sphere otherSphere){
-        this._center = otherSphere.get_center();
-        this._radius = otherSphere.get_radius();
+        this._center = otherSphere.getCenter();
+        this._radius = otherSphere.getRadius();
     }
 
     //getters
-    public Point3D get_center() {
-        return _center;
+    public Point3D getCenter() {
+        return new Point3D(_center);
     }
 
-    public double get_radius() {
+    public double getRadius() {
         return _radius;
     }
 
     //setters
-    public void set_center(Point3D _center) {
+    public void setCenter(Point3D _center) {
         this._center = _center;
     }
 
-    public void set_radius(double _radius) {
+    public void setRadius(double _radius) {
         this._radius = _radius;
     }
 
     //equal method override
     @Override
     public boolean equals(Object otherSphere) {
-        return (this._center==((Sphere)otherSphere).get_center()&&this._radius==((Sphere)otherSphere).get_radius());
+        return (this._center.equals(((Sphere)otherSphere).getCenter())&&this._radius==((Sphere)otherSphere).getRadius());
     }
 }
