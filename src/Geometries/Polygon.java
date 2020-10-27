@@ -1,5 +1,7 @@
 package Geometries;
 import Primitives.Point3D;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Polygon extends Geometry {
@@ -11,7 +13,7 @@ public class Polygon extends Geometry {
     }
 
     public Polygon(){
-        this._points = null;
+        this._points = new ArrayList<Point3D>();
     }
 
     public Polygon(Polygon otherPolygon){
