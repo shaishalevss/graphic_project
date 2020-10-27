@@ -26,33 +26,33 @@ public class Cylinder extends AbstractGeometry{
     }
 
     //getters and setters
-    public double get_radius() {
+    public double getRadius() {
         return _radius;
     }
 
-    public void set_radius(double _radius) {
+    public void setRadius(double _radius) {
         this._radius = _radius;
     }
 
-    public Ray get_axis() {
+    public Ray getAxis() {
         return new Ray(_axis);
     }
 
-    public void set_axis(Ray _axis) {
+    public void setAxis(Ray _axis) {
         this._axis = _axis;
     }
 
-    public double get_height() {
+    public double getHeight() {
         return _height;
     }
 
-    public void set_height(double _height) {
+    public void setHeight(double _height) {
         this._height = _height;
     }
 
     //equals methods
     @Override
     public boolean equals(Object otherCylinder) {
-        return (this._radius==((Cylinder)otherCylinder).get_radius()&&this._axis.equals(((Cylinder)otherCylinder).get_axis())&&this._height==((Cylinder)otherCylinder).get_height());
+        return (this._radius==((Cylinder)otherCylinder).getRadius()&&this._axis.equals(((Cylinder)otherCylinder).getAxis())&&this._height==((Cylinder)otherCylinder).getHeight());
     }
 }

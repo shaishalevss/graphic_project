@@ -24,7 +24,7 @@ public class Polygon extends AbstractGeometry{
     }
 
     //setters
-    public void set_points(List<Point3D> _points) {
+    public void setPoints(List<Point3D> _points) {
         this._points = _points;
     }
 
