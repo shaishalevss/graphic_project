@@ -71,12 +71,22 @@ public class Vector {
 
     //multiply vector with vector
     public Vector crossProduct(Vector other){
-        return new Vector();
+        return new Vector(
+                new Point3D(
+                        new Coordinate(
+                                (_head.getY().getCoordinate()*other._head.getZ().getCoordinate())-(_head.getZ().getCoordinate()*other._head.getY().getCoordinate())),
+                        new Coordinate(
+                                (_head.getZ().getCoordinate()*other._head.getX().getCoordinate())-(_head.getX().getCoordinate()*other._head.getZ().getCoordinate())),
+                        new Coordinate(
+                                (_head.getX().getCoordinate()*other._head.getY().getCoordinate())-(_head.getY().getCoordinate()*other._head.getX().getCoordinate()))
+                )
+        );
     }
 
     //scalar multiply
     public double dotProduct(Vector other){
-        return 0.0;
+        return (_head.getX().getCoordinate()*other._head.getX().getCoordinate())+(_head.getY().getCoordinate()*other._head.getY().getCoordinate())+(_head.getZ().getCoordinate()*other._head.getZ().getCoordinate());
+
     }
 
 
