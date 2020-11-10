@@ -13,6 +13,12 @@ public class Point3D {
         this._z = _z;
     }
 
+    public Point3D(double newX, double newY, double newZ) {
+        this.setX(new Coordinate(newX));
+        this.setY(new Coordinate(newY));
+        this.setZ(new Coordinate(newZ));
+    }
+
     public Point3D() {
         Coordinate newX = new Coordinate ();
         Coordinate newY = new Coordinate ();

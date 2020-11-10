@@ -12,6 +12,14 @@ public class Vector {
         this._head = new Point3D();
     }
 
+    public Vector(double newX, double newY, double newZ) {
+        Point3D newPoint = new Point3D();
+        newPoint.setX(new Coordinate(newX));
+        newPoint.setY(new Coordinate(newY));
+        newPoint.setZ(new Coordinate(newZ));
+        this._head=newPoint;
+    }
+
     public Vector(Vector otherVector) {
         this._head = otherVector.getHead();
     }
@@ -47,12 +55,18 @@ public class Vector {
 
     //vector addition
     public Vector add(Vector other){
-        return new Vector();
+        return new Vector(
+                this.getHead().getX().getCoordinate()+other.getHead().getX().getCoordinate(),
+                this.getHead().getY().getCoordinate()+other.getHead().getY().getCoordinate(),
+        this.getHead().getZ().getCoordinate()+other.getHead().getZ().getCoordinate());
     }
 
     //vector subtraction
-    public Vector subtract(){
-        return new Vector();
+    public Vector subtract(Vector other){
+        return new Vector(
+                this.getHead().getX().getCoordinate()-other.getHead().getX().getCoordinate(),
+                this.getHead().getY().getCoordinate()-other.getHead().getY().getCoordinate(),
+                this.getHead().getZ().getCoordinate()-other.getHead().getZ().getCoordinate());
     }
 
     //multiply vector with scalar
@@ -64,7 +78,7 @@ public class Vector {
                         new Coordinate(
                         _head.getY().getCoordinate()*scalar),
                         new Coordinate(
-                        _head.getZ().getCoordinate())
+                        _head.getZ().getCoordinate()*scalar)
                 )
         );
     }
