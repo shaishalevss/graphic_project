@@ -1,5 +1,7 @@
 package Primitives;
 
+import java.awt.*;
+
 public class Point3D {
     protected Coordinate _x;
     protected Coordinate _y;
@@ -26,6 +28,25 @@ public class Point3D {
         this._z = otherPoint.getZ();
     }
 
+    public Point3D add(Vector v) {
+        Coordinate newX = new Coordinate(this.getX().getCoordinate()+v.getHead().getX().getCoordinate());  //Add the coordinates of the other vector's
+        Coordinate newY = new Coordinate(this.getY().getCoordinate()+v.getHead().getY().getCoordinate());  //head to this point's and create a new point
+        Coordinate newZ = new Coordinate(this.getZ().getCoordinate()+v.getHead().getZ().getCoordinate());  //from the sum.
+        return new Point3D(newX,newY,newZ);
+    }
+
+    public Vector subtract(Point3D other) {
+        Coordinate newX = new Coordinate(this.getX().getCoordinate()-other.getX().getCoordinate());        //Subtract other point's coordinates from
+        Coordinate newY = new Coordinate(this.getY().getCoordinate()-other.getY().getCoordinate());        //this one's and create a new vector
+        Coordinate newZ = new Coordinate(this.getZ().getCoordinate()-other.getZ().getCoordinate());        //from the product coordinates.
+        return new Vector(new Point3D(newX,newY,newZ));
+    }
+
+    public double distance(Point3D other) {
+        return Math.sqrt(Math.pow(this.getX().getCoordinate()+other.getX().getCoordinate(),2)+             //Calculate the distance between 2 points
+                Math.pow(this.getY().getCoordinate()+other.getY().getCoordinate(),2)+                      //by combining the power of 2 of the sum of their
+                Math.pow(this.getZ().getCoordinate()+other.getZ().getCoordinate(),2));                     //coordinates and then squaring it.
+    }
 
     //getters
     public Coordinate getX() {
