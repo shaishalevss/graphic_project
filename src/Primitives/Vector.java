@@ -58,7 +58,7 @@ public class Vector {
         if (this.getHead().getX().getCoordinate()==other.getHead().getX().getCoordinate()*-1&&
                 this.getHead().getY().getCoordinate()==other.getHead().getY().getCoordinate()*-1&&
                 this.getHead().getZ().getCoordinate()==other.getHead().getZ().getCoordinate()*-1) {
-            throw new IllegalArgumentException("Cannot subtract mirrored vectors");
+            throw new IllegalArgumentException("Cannot subtract mirroredx vectors");
         }
         return new Vector(
                 this.getHead().getX().getCoordinate()+other.getHead().getX().getCoordinate(),
@@ -96,16 +96,20 @@ public class Vector {
 
     //multiply vector with vector
     public Vector crossProduct(Vector other){
-        return new Vector(
-                new Point3D(
-                        new Coordinate(
-                                (_head.getY().getCoordinate()*other._head.getZ().getCoordinate())-(_head.getZ().getCoordinate()*other._head.getY().getCoordinate())),
-                        new Coordinate(
-                                (_head.getZ().getCoordinate()*other._head.getX().getCoordinate())-(_head.getX().getCoordinate()*other._head.getZ().getCoordinate())),
-                        new Coordinate(
-                                (_head.getX().getCoordinate()*other._head.getY().getCoordinate())-(_head.getY().getCoordinate()*other._head.getX().getCoordinate()))
-                )
-        );
+        Vector newVector = new Vector(new Point3D(
+                new Coordinate(
+                        (_head.getY().getCoordinate()*other._head.getZ().getCoordinate())-(_head.getZ().getCoordinate()*other._head.getY().getCoordinate())),
+                new Coordinate(
+                        (_head.getZ().getCoordinate()*other._head.getX().getCoordinate())-(_head.getX().getCoordinate()*other._head.getZ().getCoordinate())),
+                new Coordinate(
+                        (_head.getX().getCoordinate()*other._head.getY().getCoordinate())-(_head.getY().getCoordinate()*other._head.getX().getCoordinate()))
+        ));
+        if (newVector.getHead().getX().getCoordinate()==0&&
+                newVector.getHead().getY().getCoordinate()==0&&
+                newVector.getHead().getZ().getCoordinate()==0){
+            throw new IllegalArgumentException("Cannot cross parallel vectors");
+        }
+        return newVector;
     }
 
     //scalar multiply
