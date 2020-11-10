@@ -55,6 +55,11 @@ public class Vector {
 
     //vector addition
     public Vector add(Vector other){
+        if (this.getHead().getX().getCoordinate()==other.getHead().getX().getCoordinate()*-1&&
+                this.getHead().getY().getCoordinate()==other.getHead().getY().getCoordinate()*-1&&
+                this.getHead().getZ().getCoordinate()==other.getHead().getZ().getCoordinate()*-1) {
+            throw new IllegalArgumentException("Cannot subtract mirrored vectors");
+        }
         return new Vector(
                 this.getHead().getX().getCoordinate()+other.getHead().getX().getCoordinate(),
                 this.getHead().getY().getCoordinate()+other.getHead().getY().getCoordinate(),
@@ -63,6 +68,9 @@ public class Vector {
 
     //vector subtraction
     public Vector subtract(Vector other){
+        if(this.equals(other)){
+            throw new IllegalArgumentException("Cannot subtract equal vectors");
+        }
         return new Vector(
                 this.getHead().getX().getCoordinate()-other.getHead().getX().getCoordinate(),
                 this.getHead().getY().getCoordinate()-other.getHead().getY().getCoordinate(),
