@@ -43,7 +43,7 @@ public class Point3D {
 
     public Vector subtract(Point3D other){
         if(this.equals(other)){
-            throw new ArithmeticException("Cannot subtract point from itself");
+            throw new IllegalArgumentException("Cannot subtract point from itself");
         }
         else
             {
