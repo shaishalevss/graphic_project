@@ -71,6 +71,9 @@ public class Vector {
 
     //multiply vector with scalar
     public Vector scale(double scalar){
+        if (scalar==0){
+            throw new ArithmeticException("Cannot multiply vector by 0");
+        }
         return new Vector(
                 new Point3D(
                         new Coordinate(

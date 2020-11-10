@@ -41,11 +41,17 @@ public class Point3D {
         return new Point3D(newX,newY,newZ);
     }
 
-    public Vector subtract(Point3D other) {
-        Coordinate newX = new Coordinate(this.getX().getCoordinate()-other.getX().getCoordinate());        //Subtract other point's coordinates from
-        Coordinate newY = new Coordinate(this.getY().getCoordinate()-other.getY().getCoordinate());        //this one's and create a new vector
-        Coordinate newZ = new Coordinate(this.getZ().getCoordinate()-other.getZ().getCoordinate());        //from the product coordinates.
-        return new Vector(new Point3D(newX,newY,newZ));
+    public Vector subtract(Point3D other){
+        if(this.equals(other)){
+            throw new ArithmeticException("Cannot subtract point from itself");
+        }
+        else
+            {
+            Coordinate newX = new Coordinate(this.getX().getCoordinate() - other.getX().getCoordinate());        //Subtract other point's coordinates from
+            Coordinate newY = new Coordinate(this.getY().getCoordinate() - other.getY().getCoordinate());        //this one's and create a new vector
+            Coordinate newZ = new Coordinate(this.getZ().getCoordinate() - other.getZ().getCoordinate());        //from the product coordinates.
+            return new Vector(new Point3D(newX, newY, newZ));
+        }
     }
 
     public double distance(Point3D other) {
