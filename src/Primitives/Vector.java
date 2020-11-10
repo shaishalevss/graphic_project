@@ -32,6 +32,56 @@ public class Vector {
         return this._head.equals(((Vector)otherVector).getHead());
     }
 
+
+    //calculate the length of the vector
+    public double length(){
+        return Math.abs(Math.sqrt(Math.pow(_head.getX().getCoordinate(),2)+Math.pow(_head.getY().getCoordinate(),2)+Math.pow(_head.getZ().getCoordinate(),2)));
+    }
+
+    //normalize the vector
+    public Vector normalize(){
+        return new Vector(new Point3D(new Coordinate(
+                _head.getX().getCoordinate()/length()),new Coordinate(_head.getY().getCoordinate()/length()),new Coordinate(_head.getZ().getCoordinate()/length()))
+        );
+    }
+
+    //vector addition
+    public Vector add(Vector other){
+        return new Vector();
+    }
+
+    //vector subtraction
+    public Vector subtract(){
+        return new Vector();
+    }
+
+    //multiply vector with scalar
+    public Vector scale(double scalar){
+        return new Vector(
+                new Point3D(
+                        new Coordinate(
+                                _head.getX().getCoordinate()*scalar),
+                        new Coordinate(
+                        _head.getY().getCoordinate()*scalar),
+                        new Coordinate(
+                        _head.getZ().getCoordinate())
+                )
+        );
+    }
+
+    //multiply vector with vector
+    public Vector crossProduct(Vector other){
+        return new Vector();
+    }
+
+    //scalar multiply
+    public double dotProduct(Vector other){
+        return 0.0;
+    }
+
+
+
+    //ToString
     @Override
     public String toString() {
         return ""+ this.getHead();
