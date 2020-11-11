@@ -48,9 +48,12 @@ public class Vector {
 
     //normalize the vector
     public Vector normalize(){
-        return new Vector(new Point3D(new Coordinate(
-                _head.getX().getCoordinate()/length()),new Coordinate(_head.getY().getCoordinate()/length()),new Coordinate(_head.getZ().getCoordinate()/length()))
-        );
+
+        Coordinate newX = new Coordinate(_head.getX().getCoordinate()/length());
+        Coordinate newY = new Coordinate(_head.getY().getCoordinate()/length());
+        Coordinate newZ = new Coordinate(_head.getZ().getCoordinate()/length());
+
+        return new Vector(new Point3D(newX,newY,newZ));
     }
 
     //vector addition
@@ -60,10 +63,13 @@ public class Vector {
                 this.getHead().getZ().getCoordinate()==other.getHead().getZ().getCoordinate()*-1) {
             throw new IllegalArgumentException("Cannot subtract mirroredx vectors");
         }
-        return new Vector(
-                this.getHead().getX().getCoordinate()+other.getHead().getX().getCoordinate(),
-                this.getHead().getY().getCoordinate()+other.getHead().getY().getCoordinate(),
-        this.getHead().getZ().getCoordinate()+other.getHead().getZ().getCoordinate());
+
+        double newX = this.getHead().getX().getCoordinate()+other.getHead().getX().getCoordinate();
+        double newY = this.getHead().getY().getCoordinate()+other.getHead().getY().getCoordinate();
+        double newZ = this.getHead().getZ().getCoordinate()+other.getHead().getZ().getCoordinate();
+
+
+        return new Vector(newX,newY,newZ);
     }
 
     //vector subtraction
@@ -82,28 +88,22 @@ public class Vector {
         if (scalar==0){
             throw new IllegalArgumentException("Cannot multiply vector by 0");
         }
-        return new Vector(
-                new Point3D(
-                        new Coordinate(
-                                _head.getX().getCoordinate()*scalar),
-                        new Coordinate(
-                        _head.getY().getCoordinate()*scalar),
-                        new Coordinate(
-                        _head.getZ().getCoordinate()*scalar)
-                )
-        );
+
+        Coordinate newX = new Coordinate(_head.getX().getCoordinate()*scalar);
+        Coordinate newY = new Coordinate(_head.getY().getCoordinate()*scalar);
+        Coordinate newZ = new Coordinate(_head.getZ().getCoordinate()*scalar);
+
+        return new Vector(new Point3D(newX,newY,newZ));
     }
 
     //multiply vector with vector
     public Vector crossProduct(Vector other){
-        Vector newVector = new Vector(new Point3D(
-                new Coordinate(
-                        (_head.getY().getCoordinate()*other._head.getZ().getCoordinate())-(_head.getZ().getCoordinate()*other._head.getY().getCoordinate())),
-                new Coordinate(
-                        (_head.getZ().getCoordinate()*other._head.getX().getCoordinate())-(_head.getX().getCoordinate()*other._head.getZ().getCoordinate())),
-                new Coordinate(
-                        (_head.getX().getCoordinate()*other._head.getY().getCoordinate())-(_head.getY().getCoordinate()*other._head.getX().getCoordinate()))
-        ));
+        Coordinate newX = new Coordinate((_head.getY().getCoordinate()*other._head.getZ().getCoordinate())-(_head.getZ().getCoordinate()*other._head.getY().getCoordinate()));
+        Coordinate newY = new Coordinate((_head.getZ().getCoordinate()*other._head.getX().getCoordinate())-(_head.getX().getCoordinate()*other._head.getZ().getCoordinate()));
+        Coordinate newZ = new Coordinate((_head.getX().getCoordinate()*other._head.getY().getCoordinate())-(_head.getY().getCoordinate()*other._head.getX().getCoordinate()));
+
+        Vector newVector = new Vector(new Point3D(newX,newY,newZ));
+
         if (newVector.getHead().getX().getCoordinate()==0&&
                 newVector.getHead().getY().getCoordinate()==0&&
                 newVector.getHead().getZ().getCoordinate()==0){
