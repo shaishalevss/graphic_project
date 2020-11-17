@@ -3,6 +3,8 @@ package Elements;
 import Primitives.Point3D;
 import Primitives.Vector;
 
+import java.util.Objects;
+
 public class Camera {
     protected Point3D _projectionCenter;
     protected Vector _vUp;
@@ -22,7 +24,7 @@ public class Camera {
         this._projectionCenter = new Point3D();
         this._vUp = new Vector(vUp);
         this._vRight = new Vector(vRight);
-        this._vToward = new Vector(vUp.crossProduct(vRight));
+        this._vToward = vUp.crossProduct(vRight);
     }
 
     //Copy Constructor
@@ -65,5 +67,18 @@ public class Camera {
 
     public void setVToward(Vector newVToward) {
         this._vToward = new Vector(newVToward);
+    }
+
+    @Override
+    public String toString() {
+        return "" + _projectionCenter + _vUp + _vRight + _vToward;
+    }
+
+    @Override
+    public boolean equals(Object otherCamera) {
+        return (this._projectionCenter.equals(((Camera)otherCamera)._projectionCenter)&&
+                this._vUp.equals(((Camera)otherCamera)._vUp)&&
+                this._vRight.equals(((Camera)otherCamera)._vRight)&&
+                this._vToward.equals(((Camera)otherCamera)._vToward));
     }
 }
