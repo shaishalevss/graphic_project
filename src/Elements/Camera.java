@@ -1,6 +1,7 @@
 package Elements;
 
 import Primitives.Point3D;
+import Primitives.Ray;
 import Primitives.Vector;
 
 public class Camera {
@@ -65,5 +66,10 @@ public class Camera {
 
     public void setVToward(Vector newVToward) {
         this._vToward = new Vector(newVToward);
+    }
+
+    public Ray constructRayThrowAPixel(int nX, int nY, int j, int i, double screenDistance, double screenWidth, double screenHeight) {
+
+        return new Ray();
     }
 }
