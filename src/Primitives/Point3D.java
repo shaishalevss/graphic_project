@@ -47,9 +47,9 @@ public class Point3D {
         }
         else
             {
-            Coordinate newX = new Coordinate(this.getX().getCoordinate() - other.getX().getCoordinate());        //Subtract other point's coordinates from
-            Coordinate newY = new Coordinate(this.getY().getCoordinate() - other.getY().getCoordinate());        //this one's and create a new vector
-            Coordinate newZ = new Coordinate(this.getZ().getCoordinate() - other.getZ().getCoordinate());        //from the product coordinates.
+            Coordinate newX = new Coordinate(this.getX().getCoordinate() - other.getX().getCoordinate());  //Subtract other point's coordinates from
+            Coordinate newY = new Coordinate(this.getY().getCoordinate() - other.getY().getCoordinate());  //this one's and create a new vector
+            Coordinate newZ = new Coordinate(this.getZ().getCoordinate() - other.getZ().getCoordinate());  //from the product coordinates.
             return new Vector(new Point3D(newX, newY, newZ));
         }
     }
