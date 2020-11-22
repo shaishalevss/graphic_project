@@ -10,6 +10,11 @@ public class Ray {
         this._direction = _direction;
     }
 
+    public Ray(Point3D _originPoint, Vector _direction) {
+        this._00P = _originPoint;
+        this._direction = _direction;
+    }
+
     public Ray() {
         this._00P = new Point3D();
         this._direction = new Vector();
