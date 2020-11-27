@@ -26,7 +26,7 @@ class PolygonTest {
 
         Polygon polygon = new Polygon();
         polygon.setPoints(myPolygonTestList);
-        assertEquals(4.0, polygon.getPoints().get(1).getX().getCoordinate());
+        assertEquals(4.0, polygon.getPoints().get(1).getX()._coordinate());
     }
 
     @Test

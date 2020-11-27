@@ -1,7 +1,7 @@
 package Primitives;
 
 public class Coordinate {
-    private double _coordinate;
+    protected double _coordinate;
 
     //constructors
     public Coordinate(double coordinate) {
@@ -13,21 +13,22 @@ public class Coordinate {
     }
 
     public Coordinate(Coordinate otherCoordinate) {
-        this._coordinate = otherCoordinate.getCoordinate();
+        this._coordinate = otherCoordinate._coordinate();
     }
 
     //getters
-    public double getCoordinate() {
+    public double _coordinate() {
         return _coordinate;
     }
 
+    //setters
     public void setCoordinate(double _coordinate) {
         this._coordinate = _coordinate;
     }
 
     @Override
     public boolean equals(Object other) {
-        return (this._coordinate ==((Coordinate)other).getCoordinate());
+        return (this._coordinate ==((Coordinate)other)._coordinate);
     }
 
     @Override

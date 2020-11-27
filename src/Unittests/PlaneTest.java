@@ -13,12 +13,12 @@ class PlaneTest {
     @Test
     void emptyPlane(){
         Plane plane = new Plane();
-        assertEquals(0.0, plane.getN().getHead().getX().getCoordinate());
-        assertEquals(0.0, plane.getN().getHead().getY().getCoordinate());
-        assertEquals(0.0, plane.getN().getHead().getZ().getCoordinate());
-        assertEquals(0.0, plane.getQ().getX().getCoordinate());
-        assertEquals(0.0, plane.getQ().getY().getCoordinate());
-        assertEquals(0.0, plane.getQ().getZ().getCoordinate());
+        assertEquals(0.0, plane.getN().getHead().getX()._coordinate());
+        assertEquals(0.0, plane.getN().getHead().getY()._coordinate());
+        assertEquals(0.0, plane.getN().getHead().getZ()._coordinate());
+        assertEquals(0.0, plane.getQ().getX()._coordinate());
+        assertEquals(0.0, plane.getQ().getY()._coordinate());
+        assertEquals(0.0, plane.getQ().getZ()._coordinate());
     }
 
     @Test
@@ -26,8 +26,8 @@ class PlaneTest {
         Plane plane = new Plane();
         plane.setN(new Vector(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0))));
         plane.setQ(new Point3D(new Coordinate(1.0),new Coordinate(2.0),new Coordinate(3.0)));
-        assertEquals(2.0,plane.getN().getHead().getY().getCoordinate());
-        assertEquals(3.0,plane.getQ().getZ().getCoordinate());
+        assertEquals(2.0,plane.getN().getHead().getY()._coordinate());
+        assertEquals(3.0,plane.getQ().getZ()._coordinate());
     }
 
     @Test

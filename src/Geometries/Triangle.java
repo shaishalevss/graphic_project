@@ -61,9 +61,8 @@ public class Triangle extends Geometry {
     public List<Point3D> findIntersections(Ray ray){
         return null;
     }
-    public Vector getNormal(Point3D point){
-        return null;
-    }
+
+    public Vector getNormal(Point3D point){return null;}
 
     //equals override
     @Override

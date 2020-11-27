@@ -5,7 +5,7 @@ public class Vector {
 
     //constructors
     public Vector(Point3D head) {
-        this._head = head;
+        this._head = new Point3D(head);
     }
 
     public Vector() {
@@ -13,11 +13,7 @@ public class Vector {
     }
 
     public Vector(double newX, double newY, double newZ) {
-        Point3D newPoint = new Point3D();
-        newPoint.setX(new Coordinate(newX));
-        newPoint.setY(new Coordinate(newY));
-        newPoint.setZ(new Coordinate(newZ));
-        this._head=newPoint;
+        this._head= new Point3D(newX, newY, newZ);
     }
 
     public Vector(Vector otherVector) {
@@ -37,36 +33,36 @@ public class Vector {
     //equal method override
     @Override
     public boolean equals(Object otherVector) {
-        return this._head.equals(((Vector)otherVector).getHead());
+        return this._head.equals(((Vector)otherVector)._head);
     }
 
 
     //calculate the length of the vector
     public double length(){
-        return Math.abs(Math.sqrt(Math.pow(_head.getX().getCoordinate(),2)+Math.pow(_head.getY().getCoordinate(),2)+Math.pow(_head.getZ().getCoordinate(),2)));
+        return Math.abs(Math.sqrt(Math.pow(_head._x._coordinate,2)+Math.pow(_head._y._coordinate,2)+Math.pow(_head._z._coordinate,2)));
     }
 
     //normalize the vector
     public Vector normalize(){
 
-        Coordinate newX = new Coordinate(_head.getX().getCoordinate()/length());
-        Coordinate newY = new Coordinate(_head.getY().getCoordinate()/length());
-        Coordinate newZ = new Coordinate(_head.getZ().getCoordinate()/length());
+        Coordinate newX = new Coordinate(_head._x._coordinate/length());
+        Coordinate newY = new Coordinate(_head._y._coordinate/length());
+        Coordinate newZ = new Coordinate(_head._z._coordinate/length());
 
         return new Vector(new Point3D(newX,newY,newZ));
     }
 
     //vector addition
     public Vector add(Vector other){
-        if (this.getHead().getX().getCoordinate()==other.getHead().getX().getCoordinate()*-1&&
-                this.getHead().getY().getCoordinate()==other.getHead().getY().getCoordinate()*-1&&
-                this.getHead().getZ().getCoordinate()==other.getHead().getZ().getCoordinate()*-1) {
-            throw new IllegalArgumentException("Cannot subtract mirroredx vectors");
+        if (this._head._x._coordinate==other._head._x._coordinate*-1&&
+                this._head._y._coordinate==other._head._y._coordinate*-1&&
+                this._head._z._coordinate==other._head._z._coordinate*-1) {
+            throw new IllegalArgumentException("Cannot subtract mirrored vectors");
         }
 
-        double newX = this.getHead().getX().getCoordinate()+other.getHead().getX().getCoordinate();
-        double newY = this.getHead().getY().getCoordinate()+other.getHead().getY().getCoordinate();
-        double newZ = this.getHead().getZ().getCoordinate()+other.getHead().getZ().getCoordinate();
+        double newX = this._head._x._coordinate+other._head._x._coordinate;
+        double newY = this._head._y._coordinate+other._head._y._coordinate;
+        double newZ = this._head._z._coordinate+other._head._z._coordinate;
 
 
         return new Vector(newX,newY,newZ);
@@ -78,9 +74,9 @@ public class Vector {
             throw new IllegalArgumentException("Cannot subtract equal vectors");
         }
         return new Vector(
-                this.getHead().getX().getCoordinate()-other.getHead().getX().getCoordinate(),
-                this.getHead().getY().getCoordinate()-other.getHead().getY().getCoordinate(),
-                this.getHead().getZ().getCoordinate()-other.getHead().getZ().getCoordinate());
+                this.getHead()._x._coordinate-other._head._x._coordinate,
+                this.getHead()._y._coordinate-other._head._y._coordinate,
+                this.getHead()._z._coordinate-other._head._z._coordinate);
     }
 
     //multiply vector with scalar
@@ -89,24 +85,24 @@ public class Vector {
             throw new IllegalArgumentException("Cannot multiply vector by 0");
         }
 
-        Coordinate newX = new Coordinate(_head.getX().getCoordinate()*scalar);
-        Coordinate newY = new Coordinate(_head.getY().getCoordinate()*scalar);
-        Coordinate newZ = new Coordinate(_head.getZ().getCoordinate()*scalar);
+        Coordinate newX = new Coordinate(_head._x._coordinate*scalar);
+        Coordinate newY = new Coordinate(_head._y._coordinate*scalar);
+        Coordinate newZ = new Coordinate(_head._z._coordinate*scalar);
 
         return new Vector(new Point3D(newX,newY,newZ));
     }
 
     //multiply vector with vector
     public Vector crossProduct(Vector other){
-        Coordinate newX = new Coordinate((_head.getY().getCoordinate()*other._head.getZ().getCoordinate())-(_head.getZ().getCoordinate()*other._head.getY().getCoordinate()));
-        Coordinate newY = new Coordinate((_head.getZ().getCoordinate()*other._head.getX().getCoordinate())-(_head.getX().getCoordinate()*other._head.getZ().getCoordinate()));
-        Coordinate newZ = new Coordinate((_head.getX().getCoordinate()*other._head.getY().getCoordinate())-(_head.getY().getCoordinate()*other._head.getX().getCoordinate()));
+        Coordinate newX = new Coordinate((_head._y._coordinate*other._head._z._coordinate)-(_head._z._coordinate*other._head._y._coordinate));
+        Coordinate newY = new Coordinate((_head._z._coordinate*other._head._x._coordinate)-(_head._x._coordinate*other._head._z._coordinate));
+        Coordinate newZ = new Coordinate((_head._x._coordinate*other._head._y._coordinate)-(_head._y._coordinate*other._head._x._coordinate));
 
         Vector newVector = new Vector(new Point3D(newX,newY,newZ));
 
-        if (newVector.getHead().getX().getCoordinate()==0&&
-                newVector.getHead().getY().getCoordinate()==0&&
-                newVector.getHead().getZ().getCoordinate()==0){
+        if (newVector._head._x._coordinate==0&&
+                newVector._head._y._coordinate==0&&
+                newVector._head._z._coordinate==0){
             throw new IllegalArgumentException("Cannot cross parallel vectors");
         }
         return newVector;
@@ -114,7 +110,9 @@ public class Vector {
 
     //scalar multiply
     public double dotProduct(Vector other){
-        return (_head.getX().getCoordinate()*other._head.getX().getCoordinate())+(_head.getY().getCoordinate()*other._head.getY().getCoordinate())+(_head.getZ().getCoordinate()*other._head.getZ().getCoordinate());
+        return (_head._x._coordinate*other._head._x._coordinate)+
+                (_head._y._coordinate*other._head._y._coordinate)+
+                (_head._z._coordinate*other._head._z._coordinate);
 
     }
 
@@ -123,6 +121,6 @@ public class Vector {
     //ToString
     @Override
     public String toString() {
-        return ""+ this.getHead();
+        return ""+ this._head;
     }
 }

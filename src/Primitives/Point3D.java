@@ -1,7 +1,5 @@
 package Primitives;
 
-import java.awt.*;
-
 public class Point3D {
     protected Coordinate _x;
     protected Coordinate _y;
@@ -14,9 +12,9 @@ public class Point3D {
     }
 
     public Point3D(double newX, double newY, double newZ) {
-        this.setX(new Coordinate(newX));
-        this.setY(new Coordinate(newY));
-        this.setZ(new Coordinate(newZ));
+        this._x = new Coordinate(newX);
+        this._y = new Coordinate(newY);
+        this._z = new Coordinate(newZ);
     }
 
     public Point3D() {
@@ -29,15 +27,15 @@ public class Point3D {
     }
 
     public Point3D(Point3D otherPoint) {
-        this._x = otherPoint.getX();
-        this._y = otherPoint.getY();
-        this._z = otherPoint.getZ();
+        this._x = new Coordinate(otherPoint._x);
+        this._y = new Coordinate(otherPoint._y);
+        this._z = new Coordinate(otherPoint._z);
     }
 
     public Point3D add(Vector v) {
-        Coordinate newX = new Coordinate(this.getX().getCoordinate()+v.getHead().getX().getCoordinate());  //Add the coordinates of the other vector's
-        Coordinate newY = new Coordinate(this.getY().getCoordinate()+v.getHead().getY().getCoordinate());  //head to this point's and create a new point
-        Coordinate newZ = new Coordinate(this.getZ().getCoordinate()+v.getHead().getZ().getCoordinate());  //from the sum.
+        Coordinate newX = new Coordinate(this._x._coordinate+v._head._x._coordinate);  //Add the coordinates of the other vector's
+        Coordinate newY = new Coordinate(this._y._coordinate+v._head._y._coordinate);  //head to this point's and create a new point
+        Coordinate newZ = new Coordinate(this._z._coordinate+v._head._z._coordinate);  //from the sum.
         return new Point3D(newX,newY,newZ);
     }
 
@@ -47,17 +45,17 @@ public class Point3D {
         }
         else
             {
-            Coordinate newX = new Coordinate(this.getX().getCoordinate() - other.getX().getCoordinate());  //Subtract other point's coordinates from
-            Coordinate newY = new Coordinate(this.getY().getCoordinate() - other.getY().getCoordinate());  //this one's and create a new vector
-            Coordinate newZ = new Coordinate(this.getZ().getCoordinate() - other.getZ().getCoordinate());  //from the product coordinates.
+            Coordinate newX = new Coordinate(this._x._coordinate - other._x._coordinate);  //Subtract other point's coordinates from
+            Coordinate newY = new Coordinate(this._y._coordinate - other._y._coordinate);  //this one's and create a new vector
+            Coordinate newZ = new Coordinate(this._z._coordinate - other._z._coordinate);  //from the product coordinates.
             return new Vector(new Point3D(newX, newY, newZ));
         }
     }
 
     public double distance(Point3D other) {
-        return Math.sqrt(Math.pow(this.getX().getCoordinate()+other.getX().getCoordinate(),2)+             //Calculate the distance between 2 points
-                Math.pow(this.getY().getCoordinate()+other.getY().getCoordinate(),2)+                      //by combining the power of 2 of the sum of their
-                Math.pow(this.getZ().getCoordinate()+other.getZ().getCoordinate(),2));                     //coordinates and then squaring it.
+        return Math.sqrt(Math.pow(this._x._coordinate+other._x._coordinate,2)+             //Calculate the distance between 2 points
+                         Math.pow(this._y._coordinate+other._y._coordinate,2)+             //by combining the power of 2 of the sum of their
+                         Math.pow(this._z._coordinate+other._z._coordinate,2));            //coordinates and then squaring it.
     }
 
     //getters
@@ -88,7 +86,7 @@ public class Point3D {
 
     @Override
     public boolean equals(Object otherPoint) {
-        return (this._x.equals(((Point3D)otherPoint).getX())&&this._y.equals(((Point3D)otherPoint).getY())&&this._z.equals(((Point3D)otherPoint).getZ()));
+        return (this._x.equals(((Point3D)otherPoint)._x)&&this._y.equals(((Point3D)otherPoint)._y)&&this._z.equals(((Point3D)otherPoint)._z));
     }
 
     @Override

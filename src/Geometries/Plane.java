@@ -27,11 +27,11 @@ public class Plane extends Geometry {
 
     //getters
     public Point3D getQ() {
-        return _q;
+        return new Point3D(_q);
     }
 
     public Vector getN() {
-        return _n;
+        return new Vector(_n);
     }
 
     //setters
@@ -47,7 +47,9 @@ public class Plane extends Geometry {
     public List<Point3D> findIntersections(Ray ray){
         return null;
     }
+
     public Vector getNormal(Point3D point){
+
         return null;
     }
 

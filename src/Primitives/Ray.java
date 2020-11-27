@@ -27,7 +27,7 @@ public class Ray {
 
     //getters
     public Point3D get00P() {
-        return new Point3D();
+        return new Point3D(this._00P);
     }
 
     public Vector getDirection() {
@@ -45,11 +45,11 @@ public class Ray {
 
     @Override
     public boolean equals(Object otherRay) {
-        return this._direction.equals(((Ray)otherRay).getDirection());
+        return this._direction.equals(((Ray)otherRay)._direction);
     }
 
     @Override
     public String toString() {
-        return get00P() + "" + getDirection();
+        return get00P() + "" + _direction;
     }
 }
