@@ -3,16 +3,25 @@ import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
 
+import java.awt.*;
 import java.util.List;
 
 public class Plane extends Geometry {
     protected Point3D _q;
     protected Vector _n;
+    protected Point3D _b;
+    protected Point3D _c;
 
     //constructors
     public Plane(Point3D _q, Vector _n) {
         this._q = _q;
         this._n = _n;
+    }
+
+    public Plane(Point3D _q, Point3D _b, Point3D _c) {
+        this._q = _q;
+        this._b = _b;
+        this._c = _c;
     }
 
     public Plane(){
@@ -22,7 +31,12 @@ public class Plane extends Geometry {
 
     public Plane(Plane otherPlane){
         this._q = otherPlane.getQ();
-        this._n = otherPlane.getN();
+        if(!otherPlane._n.equals(new Vector()))
+            this._n = otherPlane.getN();
+        else {
+            this._b = new Point3D(otherPlane._b);
+            this._c = new Point3D(otherPlane._c);
+        }
     }
 
     //getters
