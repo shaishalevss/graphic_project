@@ -1,5 +1,9 @@
 package Geometries;
+import Primitives.Point3D;
 import Primitives.Ray;
+import Primitives.Vector;
+
+import java.util.List;
 
 public class Cylinder extends Geometry {
     protected double _radius;
@@ -49,6 +53,14 @@ public class Cylinder extends Geometry {
 
     public void setHeight(double _height) {
         this._height = _height;
+    }
+
+    //edit
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
+    }
+    public Vector getNormal(Point3D point){
+        return null;
     }
 
     //equals method

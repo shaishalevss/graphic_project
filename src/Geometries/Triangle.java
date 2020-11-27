@@ -1,5 +1,9 @@
 package Geometries;
 import Primitives.Point3D;
+import Primitives.Ray;
+import Primitives.Vector;
+
+import java.util.List;
 
 public class Triangle extends Geometry {
     protected Point3D _p1;
@@ -52,6 +56,14 @@ public class Triangle extends Geometry {
         this._p3 = _p3;
     }
 
+
+    //edit
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
+    }
+    public Vector getNormal(Point3D point){
+        return null;
+    }
 
     //equals override
     @Override

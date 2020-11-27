@@ -1,5 +1,9 @@
 package Geometries;
 import Primitives.Point3D;
+import Primitives.Ray;
+import Primitives.Vector;
+
+import java.util.List;
 
 public class Sphere extends Geometry {
     protected Point3D _center;
@@ -37,6 +41,14 @@ public class Sphere extends Geometry {
 
     public void setRadius(double _radius) {
         this._radius = _radius;
+    }
+
+    //edit
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
+    }
+    public Vector getNormal(Point3D point){
+        return null;
     }
 
     //equal method override

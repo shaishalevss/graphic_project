@@ -1,6 +1,9 @@
 package Geometries;
 import Primitives.Point3D;
+import Primitives.Ray;
 import Primitives.Vector;
+
+import java.util.List;
 
 public class Plane extends Geometry {
     protected Point3D _q;
@@ -38,6 +41,14 @@ public class Plane extends Geometry {
 
     public void setN(Vector _n) {
         this._n = _n;
+    }
+
+    //edit
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
+    }
+    public Vector getNormal(Point3D point){
+        return null;
     }
 
     //equals methods override
