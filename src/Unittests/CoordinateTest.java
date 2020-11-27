@@ -8,14 +8,14 @@ class CoordinateTest {
     @Test
     void emptyCoordinate(){
         Coordinate coor = new Coordinate();
-        assertEquals(0.0, coor._coordinate());
+        assertEquals(0.0, coor.getCoordinate());
     }
 
     @Test
     void setCoordinate(){
         Coordinate coor = new Coordinate();
         coor.setCoordinate(5.0);
-        assertEquals(5.0,coor._coordinate());
+        assertEquals(5.0,coor.getCoordinate());
     }
 
     @Test

@@ -11,9 +11,9 @@ class Point3DTest {
     @Test
     void emptyPoint3D(){
         Point3D point = new Point3D();
-        assertEquals(0.0, point.getX()._coordinate());
-        assertEquals(0.0, point.getY()._coordinate());
-        assertEquals(0.0, point.getZ()._coordinate());
+        assertEquals(0.0, point.getX().getCoordinate());
+        assertEquals(0.0, point.getY().getCoordinate());
+        assertEquals(0.0, point.getZ().getCoordinate());
     }
 
     @Test
@@ -22,9 +22,9 @@ class Point3DTest {
         point.setX(new Coordinate(2.0));
         point.setY(new Coordinate(5.0));
         point.setZ(new Coordinate(3.0));
-        assertEquals(2.0,point.getX()._coordinate());
-        assertEquals(5.0,point.getY()._coordinate());
-        assertEquals(3.0,point.getZ()._coordinate());
+        assertEquals(2.0,point.getX().getCoordinate());
+        assertEquals(5.0,point.getY().getCoordinate());
+        assertEquals(3.0,point.getZ().getCoordinate());
     }
 
     @Test

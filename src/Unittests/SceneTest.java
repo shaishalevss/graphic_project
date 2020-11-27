@@ -31,12 +31,12 @@ class SceneTest {
         scene.setGeometries(sceneList);
         scene.setName("Shai");
         assertEquals("Shai", scene.getName());
-        assertEquals(1.0, ((Plane)scene.getGeometries().get(0)).getQ().getX()._coordinate());
+        assertEquals(1.0, ((Plane)scene.getGeometries().get(0)).getQ().getX().getCoordinate());
 
         scene.addGeometry(new Triangle(new Point3D(new Coordinate(1),new Coordinate(1), new Coordinate(1)),
                 new Point3D(new Coordinate(2),new Coordinate(2), new Coordinate(2)),
                 new Point3D(new Coordinate(3),new Coordinate(3), new Coordinate(3))));
-        assertEquals(1,((Triangle)scene.getGeometries().get(2)).getP1().getX()._coordinate());
+        assertEquals(1,((Triangle)scene.getGeometries().get(2)).getP1().getX().getCoordinate());
     }
 
     @Test

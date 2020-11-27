@@ -11,16 +11,16 @@ class VectorTest {
     @Test
     void emptyVector(){
         Vector vec = new Vector();
-        assertEquals(0.0, vec.getHead().getX()._coordinate());
-        assertEquals(0.0, vec.getHead().getY()._coordinate());
-        assertEquals(0.0, vec.getHead().getZ()._coordinate());
+        assertEquals(0.0, vec.getHead().getX().getCoordinate());
+        assertEquals(0.0, vec.getHead().getY().getCoordinate());
+        assertEquals(0.0, vec.getHead().getZ().getCoordinate());
     }
 
     @Test
     void setVector(){
         Vector vec = new Vector();
         vec.setHead(new Point3D(new Coordinate(2.0),new Coordinate(2.0),new Coordinate(2.0)));
-        assertEquals(2.0, vec.getHead().getX()._coordinate());
+        assertEquals(2.0, vec.getHead().getX().getCoordinate());
     }
 
     @Test

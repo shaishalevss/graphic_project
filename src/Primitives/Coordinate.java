@@ -13,11 +13,11 @@ public class Coordinate {
     }
 
     public Coordinate(Coordinate otherCoordinate) {
-        this._coordinate = otherCoordinate._coordinate();
+        this._coordinate = otherCoordinate._coordinate;
     }
 
     //getters
-    public double _coordinate() {
+    public double getCoordinate() {
         return _coordinate;
     }
 
