@@ -3,6 +3,8 @@ import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sphere extends Geometry {
@@ -45,7 +47,44 @@ public class Sphere extends Geometry {
 
     //edit
     public List<Point3D> findIntersections(Ray ray){
-        return null;
+        List<Point3D> points = new ArrayList<Point3D>();
+        double th = 0;
+        Vector v = ray.getDirection().normalize();                      //normalized ray
+        Point3D p0 = ray.get00P();                                      //camera
+        Vector u = _center.subtract(p0);                                //O - P0
+        double tm = v.dotProduct(u);                                    //v*u
+        double d = Math.sqrt(u.length()*u.length()-tm*tm);              //sqrt  of (|u|^2 - tm^2)
+
+        if(d > _radius){
+            return null;
+        } else if(d == _radius){
+            double t1 = tm;
+            if(t1>0){
+                Vector t1MultiplyV = v.scale(t1);                        //t*v
+                Point3D p = p0.add(t1MultiplyV);                         //P = P0 + t*v
+                points.add(p);
+            }
+        } else if(d < _radius){
+            th = Math.sqrt(Math.pow(_radius,2) - Math.pow(d,2));         //th = sqrt(r^2-tm^2)
+            double t1 = tm+th;
+            double t2 = tm-th;
+            if(t1 > 0){
+                Vector t1MultiplyV = v.scale(t1);                        //t*v
+                Point3D p = p0.add(t1MultiplyV);                         //P = P0 + t*v
+                points.add(p);
+            }
+            if(t2 > 0){
+                Vector t2MultiplyV = v.scale(t2);                        //t*v
+                Point3D p = p0.add(t2MultiplyV);                         //P = P0 + t*v
+                points.add(p);
+            }
+        }
+
+        if(points.size() == 0){                                          //in case there's no points in the list
+            return null;
+        }
+
+        return points;
     }
 
     public Vector getNormal(Point3D point){
