@@ -61,8 +61,8 @@ public class Triangle extends Geometry {
 
     //edit
     public List<Point3D> findIntersections(Ray ray){
-        List<Point3D> pointList = new ArrayList<>();                             //Declaring list and camera
-        Vector cameraVector = ray.getDirection().normalize();                    //ray variables.
+        List<Point3D> pointList = new ArrayList<>();                             //Declaring list and camera ray
+        Vector cameraVector = ray.getDirection().normalize();                    //variables.
         Point3D cameraOrigin = ray.get00P();
         if(getNormal(new Point3D()).dotProduct(cameraVector)==0)                 //If triangle normal and camera
             return null;                                                         //vector are perpendicular return null.
@@ -84,9 +84,13 @@ public class Triangle extends Geometry {
          &&cameraVector.dotProduct(n3)<0))
             return null;
 
+
         //Get the distance between the camera and the triangle.
         double t = ((getNormal(new Point3D()).dotProduct(_p1.subtract(cameraOrigin)))
                     /getNormal(new Point3D()).dotProduct(cameraVector));
+
+        if(t <= 0)                                                               //if vector is facing away return null.
+            return null;
 
         //Return the intersection point of the ray with the triangle.
         pointList.add(cameraOrigin.add(cameraVector.scale(t)));
