@@ -61,12 +61,13 @@ public class Triangle extends Geometry {
 
     //edit
     public List<Point3D> findIntersections(Ray ray){
-        List<Point3D> pointList = new ArrayList<>();
-        Vector cameraVector = ray.getDirection().normalize();
+        List<Point3D> pointList = new ArrayList<>();                             //Declaring list and camera
+        Vector cameraVector = ray.getDirection().normalize();                    //ray variables.
         Point3D cameraOrigin = ray.get00P();
-        if(getNormal(new Point3D()).dotProduct(cameraVector)==0)
-            return null;
+        if(getNormal(new Point3D()).dotProduct(cameraVector)==0)                 //If triangle normal and camera
+            return null;                                                         //vector are perpendicular return null.
 
+        //Declaring the three vectors from the triangle vertices to the camera.
         Vector v1 = _p1.subtract(cameraOrigin);
         Vector v2 = _p2.subtract(cameraOrigin);
         Vector v3 = _p3.subtract(cameraOrigin);
@@ -74,6 +75,7 @@ public class Triangle extends Geometry {
         Vector n2 = v2.crossProduct(v3).normalize();
         Vector n3 = v3.crossProduct(v1).normalize();
 
+        //If ray hits outside triangle return null.
         if(!(cameraVector.dotProduct(n1)>0
          &&cameraVector.dotProduct(n2)>0
          &&cameraVector.dotProduct(n3)>0
@@ -82,7 +84,11 @@ public class Triangle extends Geometry {
          &&cameraVector.dotProduct(n3)<0))
             return null;
 
-        double t = ((getNormal(new Point3D()).dotProduct(_p1.subtract(cameraOrigin)))/getNormal(new Point3D()).dotProduct(cameraVector));
+        //Get the distance between the camera and the triangle.
+        double t = ((getNormal(new Point3D()).dotProduct(_p1.subtract(cameraOrigin)))
+                    /getNormal(new Point3D()).dotProduct(cameraVector));
+
+        //Return the intersection point of the ray with the triangle.
         pointList.add(cameraOrigin.add(cameraVector.scale(t)));
         return pointList;
     }
