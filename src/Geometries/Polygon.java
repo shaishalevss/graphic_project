@@ -32,6 +32,7 @@ public class Polygon extends Geometry {
         this._points = _points;
     }
 
+
     //edit
     public List<Point3D> findIntersections(Ray ray){
         return null;
@@ -39,6 +40,7 @@ public class Polygon extends Geometry {
     public Vector getNormal(Point3D point){
         return null;
     }
+
 
     //equal method override
     @Override

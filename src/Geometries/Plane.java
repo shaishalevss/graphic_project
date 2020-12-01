@@ -4,6 +4,7 @@ import Primitives.Ray;
 import Primitives.Vector;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Plane extends Geometry {
@@ -59,10 +60,39 @@ public class Plane extends Geometry {
 
     //edit
     public List<Point3D> findIntersections(Ray ray){
-        return null;
+        //p0 = camera
+        //v = the normalize ray
+        //tMultiplyV = t*v
+        //p = P0 + t*v
+
+        List<Point3D> points = new ArrayList<Point3D>();
+
+        if(this._q.equals(ray.get00P())){
+            return null;
+        }
+
+        Vector v = ray.getDirection().normalize();
+        Point3D p0 = ray.get00P();
+
+        if(getNormal(new Point3D()).dotProduct(v) == 0){
+            return null;
+        }
+
+        double t = (getNormal(new Point3D()).dotProduct((_q.subtract(p0))))/(getNormal(new Point3D()).dotProduct(v));
+
+        if(t <= 0){
+            return null;
+        }
+
+        Vector tMultiplyV = v.scale(t);
+        Point3D p = p0.add(tMultiplyV);
+        points.add(p);
+        return points;
     }
 
     public Vector getNormal(Point3D point){
+        if(_n!=null)
+            return getN();
         Vector a = new Vector(_b.subtract(_q));
         Vector b = new Vector(_c.subtract(_q));
         return new Vector ((a.crossProduct(b)).normalize());
