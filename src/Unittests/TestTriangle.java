@@ -31,11 +31,12 @@ class TestTriangle {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Inside triangle
         ray = new Ray(new Point3D(1, 1, 1), new Vector(-1, -1, -1));
-        assertEquals("Bad intersection", Util.listOf(new Point3D(1d / 3, 1d / 3, 1d / 3)), tr.findIntersections(ray));
+          assertEquals("Bad intersection", Util.listOf(new Point3D(1d / 3, 1d / 3, 1d / 3)), tr.findIntersections(ray));
 
         // TC02: Against edge
         ray = new Ray(new Point3D(0, 0, -1), new Vector(1, 1, 0));
         assertEquals("Wrong intersection with plane", Util.listOf(new Point3D(1, 1, -1)), pl.findIntersections(ray));
+        System.out.println("we passed this poing");
         assertNull("Bad intersection", tr.findIntersections(ray));
 
         // TC03: Against vertex

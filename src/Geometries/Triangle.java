@@ -3,6 +3,8 @@ import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Triangle extends Geometry {
@@ -59,7 +61,30 @@ public class Triangle extends Geometry {
 
     //edit
     public List<Point3D> findIntersections(Ray ray){
-        return null;
+        List<Point3D> pointList = new ArrayList<>();
+        Vector cameraVector = ray.getDirection().normalize();
+        Point3D cameraOrigin = ray.get00P();
+        if(getNormal(new Point3D()).dotProduct(cameraVector)==0)
+            return null;
+
+        Vector v1 = _p1.subtract(cameraOrigin);
+        Vector v2 = _p2.subtract(cameraOrigin);
+        Vector v3 = _p3.subtract(cameraOrigin);
+        Vector n1 = v1.crossProduct(v2).normalize();
+        Vector n2 = v2.crossProduct(v3).normalize();
+        Vector n3 = v3.crossProduct(v1).normalize();
+
+        if(!(cameraVector.dotProduct(n1)>0
+         &&cameraVector.dotProduct(n2)>0
+         &&cameraVector.dotProduct(n3)>0
+         ||cameraVector.dotProduct(n1)<0
+         &&cameraVector.dotProduct(n2)<0
+         &&cameraVector.dotProduct(n3)<0))
+            return null;
+
+        double t = ((getNormal(new Point3D()).dotProduct(_p1.subtract(cameraOrigin)))/getNormal(new Point3D()).dotProduct(cameraVector));
+        pointList.add(cameraOrigin.add(cameraVector.scale(t)));
+        return pointList;
     }
 
     public Vector getNormal(Point3D point){
