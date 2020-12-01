@@ -28,7 +28,7 @@ public class Coordinate {
 
     @Override
     public boolean equals(Object other) {
-        return (this._coordinate ==((Coordinate)other)._coordinate);
+        return Util.isZero(_coordinate - ((Coordinate)other)._coordinate);
     }
 
     @Override

@@ -45,6 +45,7 @@ public abstract class Util {
     public static double alignZero(double number) {
         return getExp(number) < ACCURACY ? 0.0 : number;
     }
+
     public static List<Point3D> listOf(Point3D... vertices) {
         List<Point3D> lst=new ArrayList<Point3D>();
         for(int i =0; i <vertices.length; i++)
