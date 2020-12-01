@@ -60,34 +60,25 @@ public class Plane extends Geometry {
 
     //edit
     public List<Point3D> findIntersections(Ray ray){
-        //p0 = camera
-        //v = the normalize ray
-        //tMultiplyV = t*v
-        //p = P0 + t*v
-
-        List<Point3D> points = new ArrayList<Point3D>();
-
-        if(this._q.equals(ray.get00P())){
-            return null;
-        }
-
-        Vector v = ray.getDirection().normalize();
+        List<Point3D> pointList = new ArrayList<Point3D>();                //Declaring point list and camera ray
+        Vector v = ray.getDirection().normalize();                         //variables.
         Point3D p0 = ray.get00P();
 
-        if(getNormal(new Point3D()).dotProduct(v) == 0){
+        if(this._q.equals(ray.get00P()))                                   //If the camera is in the plane return null.
             return null;
-        }
 
+        if(getNormal(new Point3D()).dotProduct(v) == 0)                    //If triangle normal and camera
+            return null;                                                   //vector are perpendicular return null.
+
+        //Calculate distance from camera to plane.
         double t = (getNormal(new Point3D()).dotProduct((_q.subtract(p0))))/(getNormal(new Point3D()).dotProduct(v));
 
-        if(t <= 0){
+        if(t <= 0)                                                         //if vector is facing away return null.
             return null;
-        }
 
-        Vector tMultiplyV = v.scale(t);
-        Point3D p = p0.add(tMultiplyV);
-        points.add(p);
-        return points;
+        //Return intersection point of the ray with the plane.
+        pointList.add(p0.add(v.scale(t)));
+        return pointList;
     }
 
     public Vector getNormal(Point3D point){
