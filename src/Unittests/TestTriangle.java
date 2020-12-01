@@ -21,10 +21,16 @@ class TestTriangle {
         // TC01: There is a simple single test here
         Triangle pl = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
         double sqrt3 = Math.sqrt(1d / 3);
-        assertEquals("Bad normal to trinagle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
+        assertEquals("Bad normal to plane", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
+//        assertEquals("Bad normal to triangle", new Vector(sqrt3, sqrt3, sqrt3).getHead().getX().getCoordinate(),
+//                pl.getNormal(new Point3D(0, 0, 1)).getHead().getX().getCoordinate(),0.000000000000001);
+//        assertEquals("Bad normal to triangle", new Vector(sqrt3, sqrt3, sqrt3).getHead().getY().getCoordinate(),
+//                pl.getNormal(new Point3D(0, 0, 1)).getHead().getY().getCoordinate(),0.000000000000001);
+//        assertEquals("Bad normal to triangle", new Vector(sqrt3, sqrt3, sqrt3).getHead().getZ().getCoordinate(),
+//                pl.getNormal(new Point3D(0, 0, 1)).getHead().getZ().getCoordinate(),0.000000000000001);
     }
     @Test
-    public void testfindIntersectionsRay() {
+    public void testFindIntersectionsRay() {
         Triangle tr = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
         Plane pl = new Plane(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
         Ray ray;

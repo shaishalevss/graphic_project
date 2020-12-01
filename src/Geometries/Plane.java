@@ -63,18 +63,19 @@ public class Plane extends Geometry {
     }
 
     public Vector getNormal(Point3D point){
-
-        return null;
+        Vector a = new Vector(_b.subtract(_q));
+        Vector b = new Vector(_c.subtract(_q));
+        return new Vector ((a.crossProduct(b)).normalize());
     }
 
     //equals methods override
     @Override
     public boolean equals(Object otherPlane) {
-        return (this._q.equals(((Plane)otherPlane).getQ())&&this._n.equals(((Plane)otherPlane).getN()));
+        return (this._q.equals(((Plane)otherPlane)._q)&&this._n.equals(((Plane)otherPlane)._n));
     }
 
     @Override
     public String toString() {
-        return getQ() + " " + getN();
+        return _q + " " + _n;
     }
 }

@@ -47,18 +47,19 @@ public class Sphere extends Geometry {
     public List<Point3D> findIntersections(Ray ray){
         return null;
     }
+
     public Vector getNormal(Point3D point){
-        return null;
+        return new Vector(point.subtract(_center));
     }
 
     //equal method override
     @Override
     public boolean equals(Object otherSphere) {
-        return (this._center.equals(((Sphere)otherSphere).getCenter())&&this._radius==((Sphere)otherSphere).getRadius());
+        return (this._center.equals(((Sphere)otherSphere)._center)&&this._radius==((Sphere)otherSphere)._radius);
     }
 
     @Override
     public String toString() {
-        return getCenter() + " " + getRadius();
+        return _center + " " + _radius;
     }
 }

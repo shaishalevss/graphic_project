@@ -62,7 +62,11 @@ public class Triangle extends Geometry {
         return null;
     }
 
-    public Vector getNormal(Point3D point){return null;}
+    public Vector getNormal(Point3D point){
+        Vector a = new Vector(_p2.subtract(_p1));
+        Vector b = new Vector(_p3.subtract(_p1));
+        return new Vector ((a.crossProduct(b)).normalize());
+    }
 
     //equals override
     @Override
