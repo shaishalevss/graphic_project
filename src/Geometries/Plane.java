@@ -65,7 +65,7 @@ public class Plane extends Geometry {
     public Vector getNormal(Point3D point){
         Vector a = new Vector(_b.subtract(_q));
         Vector b = new Vector(_c.subtract(_q));
-        return new Vector (((a.crossProduct(b)).normalize()));
+        return new Vector ((a.crossProduct(b)).normalize());
     }
 
     //equals methods override
