@@ -32,7 +32,7 @@ class ImageWriterTest {
         for (int i = 0; i < nY; ++i)
             for (int j = 0; j < nX; ++j)
                 imageWriter.writePixel(j, i,
-                        j % 50 == 0  ? new Color(0,204,204) : new Color(102,204,0));
+                        j % 50 == 0 || i % 50 == 0 ? new Color(0,204,204) : new Color(102,204,0));
 
         imageWriter.writeToImage();
     }
