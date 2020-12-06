@@ -68,10 +68,18 @@ class ImageWriterTest {
         }
 
         //legs
-        for (int i = 424; i < nY; ++i) {
+        for (int i = 424; i < 480; ++i) {
             for (int j = 0; j < nX; ++j) {
                 imageWriter.writePixel(j, i,
-                        (j  >= (14*cell)-1 && j<= (16*cell)-1) || (j  >= (18*cell)-1 && j<= (20*cell)-1) ? new Color(0,0,0) : new Color(154,202,254));
+                        (j  >= (14*cell)-1 && j<= (16*cell)-1) || (j  >= (18*cell)-1 && j<= (20*cell)-1) ? new Color(41,91,152) : new Color(154,202,254));
+            }
+        }
+
+        //shoes
+        for (int i = 480; i < nY; ++i) {
+            for (int j = 0; j < nX; ++j) {
+                imageWriter.writePixel(j, i,
+                        (j  >= (14*cell)-1 && j<= (16*cell)-1) || (j  >= (18*cell)-1 && j<= (20*cell)-1) ? new Color(255,0,0) : new Color(154,202,254));
             }
         }
 
@@ -123,6 +131,30 @@ class ImageWriterTest {
             }
         }
 
+        //neck stripes 1
+        for (int i = 179; i < 181; ++i) {
+            for (int j = 0; j < nX; ++j) {
+                imageWriter.writePixel(j, i,
+                        (j  >= (16*cell)-1 && j<= (18*cell)-1) ? new Color(0,0,0) : new Color(154,202,254));
+            }
+        }
+
+        //neck stripes 2
+        for (int i = 185; i < 187; ++i) {
+            for (int j = 0; j < nX; ++j) {
+                imageWriter.writePixel(j, i,
+                        (j  >= (16*cell)-1 && j<= (18*cell)-1) ? new Color(0,0,0) : new Color(154,202,254));
+            }
+        }
+
+        //neck stripes 3
+        for (int i = 192; i < 194; ++i) {
+            for (int j = 0; j < nX; ++j) {
+                imageWriter.writePixel(j, i,
+                        (j  >= (16*cell)-1 && j<= (18*cell)-1) ? new Color(0,0,0) : new Color(154,202,254));
+            }
+        }
+
         //head
         for (int i = 74; i < 174; ++i) {
             for (int j = 0; j < nX; ++j) {
@@ -154,7 +186,7 @@ class ImageWriterTest {
 
         //left pupil
         for (int i = 102; i < 112; ++i) {
-            for (int j = (15*cell)+9; j < (16*cell)-6; ++j) {
+            for (int j = (15*cell); j < (16*cell)-16; ++j) {
                 imageWriter.writePixel(j, i, new Color(11,242,96));
             }
         }
@@ -198,7 +230,7 @@ class ImageWriterTest {
         }
 
         //left finger
-        for (int i = 349; i < 390; ++i) {
+        for (int i = 349; i < 380; ++i) {
             for (int j = (9*cell)-1; j < (11*cell); ++j) {
                 imageWriter.writePixel(j, i,
                         (j >= (9*cell)+8 && j<= (10*cell)-6) ? new Color(255,255,0) : new Color(154,202,254));
@@ -213,11 +245,35 @@ class ImageWriterTest {
             }
         }
 
+        //left finger nail
+        for (int i = 380; i < 390; ++i) {
+            for (int j = (9*cell)-1; j < (11*cell); ++j) {
+                imageWriter.writePixel(j, i,
+                        (j >= (9*cell)+8 && j<= (10*cell)-6) ? new Color(0,0,0) : new Color(154,202,254));
+            }
+        }
+
+        //left another finger nail
+        for (int i = 349; i < 399; ++i) {
+            for (int j = (10*cell)-1; j < (11*cell); ++j) {
+                imageWriter.writePixel(j, i,
+                        (j >= (10*cell)+8 && j<= (11*cell)-6) ? new Color(255,0,255) : new Color(154,202,254));
+            }
+        }
+
         //right finger
-        for (int i = 349; i < 390; ++i) {
+        for (int i = 349; i < 380; ++i) {
             for (int j = (23*cell)-1; j < (25*cell); ++j) {
                 imageWriter.writePixel(j, i,
                         (j >= (23*cell)+15 && j<= (25*cell)-15) ? new Color(97,65,50) : new Color(154,202,254));
+            }
+        }
+
+        //right finger nail
+        for (int i = 380; i < 390; ++i) {
+            for (int j = (23*cell)-1; j < (25*cell); ++j) {
+                imageWriter.writePixel(j, i,
+                        (j >= (23*cell)+15 && j<= (25*cell)-15) ? new Color(255,255,255) : new Color(154,202,254));
             }
         }
 
