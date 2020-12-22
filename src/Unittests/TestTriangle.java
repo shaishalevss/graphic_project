@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 //import static org.junit.jupiter.api.Assertions.*;
 
+import Geometries.GeoPoint;
 import org.junit.jupiter.api.Test;
 
 import Geometries.Plane;
@@ -23,6 +24,7 @@ class TestTriangle {
         double sqrt3 = Math.sqrt(1d / 3);
         assertEquals("Bad normal to plane", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
     }
+
     @Test
     public void testFindIntersectionsRay() {
         Triangle tr = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
@@ -31,33 +33,33 @@ class TestTriangle {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Inside triangle
         ray = new Ray(new Point3D(1, 1, 1), new Vector(-1, -1, -1));
-          assertEquals("Bad intersection", Util.listOf(new Point3D(1d / 3, 1d / 3, 1d / 3)), tr.findIntersections(ray));
+        assertEquals("Bad intersection", Util.listOf(new GeoPoint(tr,new Point3D(1d / 3, 1d / 3, 1d / 3))), tr.findIntersections(ray));
 
         // TC02: Against edge
         ray = new Ray(new Point3D(0, 0, -1), new Vector(1, 1, 0));
-        assertEquals("Wrong intersection with plane", Util.listOf(new Point3D(1, 1, -1)), pl.findIntersections(ray));
+        assertEquals("Wrong intersection with plane", Util.listOf(new GeoPoint(pl,new Point3D(1, 1, -1))), pl.findIntersections(ray));
         System.out.println("we passed this poing");
         assertNull("Bad intersection", tr.findIntersections(ray));
 
         // TC03: Against vertex
         ray = new Ray(new Point3D(0, 0, 2), new Vector(-1, -1, 0));
-        assertEquals("Wrong intersection with plane", Util.listOf(new Point3D(-0.5, -0.5, 2)), pl.findIntersections(ray));
+        assertEquals("Wrong intersection with plane", Util.listOf(new GeoPoint(pl,new Point3D(-0.5, -0.5, 2))), pl.findIntersections(ray));
         assertNull("Bad intersection", tr.findIntersections(ray));
 
         // =============== Boundary Values Tests ==================
         // TC11: In vertex
         ray = new Ray(new Point3D(-1, 0, 0), new Vector(1, 1, 0));
-        assertEquals("Wrong intersection with plane", Util.listOf(new Point3D(0, 1, 0)), pl.findIntersections(ray));
+        assertEquals("Wrong intersection with plane", Util.listOf(new GeoPoint(pl,new Point3D(0, 1, 0))), pl.findIntersections(ray));
         assertNull("Bad intersection", tr.findIntersections(ray));
 
         // TC12: On edge
         ray = new Ray(new Point3D(-1, -1, 0), new Vector(1, 1, 0));
-        assertEquals("Wrong intersection with plane", Util.listOf(new Point3D(0.5, 0.5, 0)), pl.findIntersections(ray));
+        assertEquals("Wrong intersection with plane", Util.listOf(new GeoPoint(pl,new Point3D(0.5, 0.5, 0))), pl.findIntersections(ray));
         assertNull("Bad intersection", tr.findIntersections(ray));
 
         // TC13: On edge continuation
         ray = new Ray(new Point3D(-2, 0, 0), new Vector(1, 1, 0));
-        assertEquals("Wrong intersection with plane", Util.listOf(new Point3D(-0.5, 1.5, 0)), pl.findIntersections(ray));
+        assertEquals("Wrong intersection with plane", Util.listOf(new GeoPoint(pl,new Point3D(-0.5, 1.5, 0))), pl.findIntersections(ray));
         assertNull("Bad intersection", tr.findIntersections(ray));
     }
 

@@ -10,21 +10,31 @@ import java.util.List;
 public class Sphere extends Geometry {
     protected Point3D _center;
     protected double _radius;
+    protected Color _emission;
 
     //constructors
     public Sphere(Point3D _center, double _radius) {
         this._center = _center;
         this._radius = _radius;
+        this._emission = Color.black;
+    }
+
+    public Sphere(Point3D _center, double _radius, Color emission) {
+        this._center = _center;
+        this._radius = _radius;
+        this._emission = emission;
     }
 
     public Sphere(){
         this._center = new Point3D();
         this._radius = 0.0;
+        this._emission = Color.black;
     }
 
     public Sphere(Sphere otherSphere){
         this._center = otherSphere.getCenter();
         this._radius = otherSphere.getRadius();
+        this._emission = otherSphere.getEmission();
     }
 
     //getters
@@ -36,6 +46,10 @@ public class Sphere extends Geometry {
         return _radius;
     }
 
+    public Color getEmission() {
+        return new Color(_emission.getRed(),_emission.getGreen(), _emission.getBlue());
+    }
+
     //setters
     public void setCenter(Point3D _center) {
         this._center = _center;
@@ -45,9 +59,17 @@ public class Sphere extends Geometry {
         this._radius = _radius;
     }
 
+    public void setEmission(Color newEmission){
+        this._emission = newEmission;
+    }
+
+    public void setEmission(int r, int g, int b){
+        this._emission = new Color(r,g,b);
+    }
+
     //edit
-    public List<Point3D> findIntersections(Ray ray){
-        List<Point3D> points = new ArrayList<Point3D>();
+    public List<GeoPoint> findIntersections(Ray ray){
+        List<GeoPoint> points = new ArrayList<GeoPoint>();
         double th = 0;
         Vector v = ray.getDirection().normalize();                      //normalized ray
         Point3D p0 = ray.get00P();                                      //camera
@@ -62,7 +84,7 @@ public class Sphere extends Geometry {
             if(t1>0){
                 Vector t1MultiplyV = v.scale(t1);                        //t*v
                 Point3D p = p0.add(t1MultiplyV);                         //P = P0 + t*v
-                points.add(p);
+                points.add(new GeoPoint(this,p));
             }
         } else if(d < _radius){
             th = Math.sqrt(Math.pow(_radius,2) - Math.pow(d,2));         //th = sqrt(r^2-tm^2)
@@ -71,12 +93,12 @@ public class Sphere extends Geometry {
             if(t1 > 0){
                 Vector t1MultiplyV = v.scale(t1);                        //t*v
                 Point3D p = p0.add(t1MultiplyV);                         //P = P0 + t*v
-                points.add(p);
+                points.add(new GeoPoint(this,p));
             }
             if(t2 > 0){
                 Vector t2MultiplyV = v.scale(t2);                        //t*v
                 Point3D p = p0.add(t2MultiplyV);                         //P = P0 + t*v
-                points.add(p);
+                points.add(new GeoPoint(this,p));
             }
         }
 
@@ -94,11 +116,13 @@ public class Sphere extends Geometry {
     //equal method override
     @Override
     public boolean equals(Object otherSphere) {
-        return (this._center.equals(((Sphere)otherSphere)._center)&&this._radius==((Sphere)otherSphere)._radius);
+        return (this._center.equals(((Sphere)otherSphere)._center)&&
+                this._radius==((Sphere)otherSphere)._radius&&
+                this._emission==((Sphere)otherSphere)._emission);
     }
 
     @Override
     public String toString() {
-        return _center + " " + _radius;
+        return _center + " " + _radius + " " + _emission;
     }
 }
