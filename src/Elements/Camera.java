@@ -29,6 +29,13 @@ public class Camera {
         this._vRight = new Vector(vToward.crossProduct(vUp));
     }
 
+    public Camera(Point3D projectionCenter, Vector vToward, Vector vUp) {
+        this._projectionCenter = projectionCenter;
+        this._vToward = new Vector(vToward);
+        this._vUp = new Vector(vUp);
+        this._vRight = new Vector(vToward.crossProduct(vUp));
+    }
+
     //Copy Constructor
     public Camera(Camera otherCamera) {
         this._projectionCenter = otherCamera.getProjectionCenter();

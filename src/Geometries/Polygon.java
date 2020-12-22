@@ -3,10 +3,12 @@ import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Polygon extends Geometry {
+    protected Color _emission;
     protected List<Point3D> _points;
 
     //constructors
@@ -23,6 +25,10 @@ public class Polygon extends Geometry {
     }
 
     //getters
+    public Color getEmission() {
+        return new Color(_emission.getRed(),_emission.getGreen(), _emission.getBlue());
+    }
+
     public List<Point3D> getPoints() {
         return _points;
     }
@@ -34,7 +40,7 @@ public class Polygon extends Geometry {
 
 
     //edit
-    public List<Point3D> findIntersections(Ray ray){
+    public List<GeoPoint> findIntersections(Ray ray){
         return null;
     }
     public Vector getNormal(Point3D point){

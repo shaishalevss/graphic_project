@@ -1,5 +1,7 @@
 package Primitives;
 
+import Geometries.GeoPoint;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,10 +54,11 @@ public abstract class Util {
             lst.add(vertices[i]);
         return lst;
     }
-//    public static List<GeoPoint> listOf(GeoPoint... vertices) {
-//        List<GeoPoint> lst=new ArrayList<GeoPoint>();
-//        for(int i =0; i <vertices.length; i++)
-//            lst.add(vertices[i]);
-//        return lst;
-//    }
+
+    public static List<GeoPoint> listOf(GeoPoint... vertices) {
+        List<GeoPoint> lst=new ArrayList<GeoPoint>();
+        for(int i =0; i <vertices.length; i++)
+            lst.add(vertices[i]);
+        return lst;
+    }
 }

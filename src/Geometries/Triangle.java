@@ -7,28 +7,39 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Triangle extends Geometry {
+public class Triangle extends Geometry{
     protected Point3D _p1;
     protected Point3D _p2;
     protected Point3D _p3;
+    protected Color _emission;
 
     //constructors
     public Triangle(Point3D _p1, Point3D _p2, Point3D _p3) {
         this._p1 = _p1;
         this._p2 = _p2;
         this._p3 = _p3;
+        this._emission = Color.black;
     }
 
-    public Triangle(){
+    public Triangle(Point3D _p1, Point3D _p2, Point3D _p3, Color emission) {
+        this._p1 = _p1;
+        this._p2 = _p2;
+        this._p3 = _p3;
+        this._emission = emission;
+    }
+
+    public Triangle() {
         this._p1 = new Point3D();
         this._p2 = new Point3D();
         this._p3 = new Point3D();
+        this._emission = Color.black;
     }
 
-    public Triangle(Triangle otherTriangle){
+    public Triangle(Triangle otherTriangle) {
         this._p1 = otherTriangle.getP1();
         this._p2 = otherTriangle.getP2();
         this._p3 = otherTriangle.getP3();
+        this._emission = otherTriangle.getEmission();
     }
 
 
@@ -45,6 +56,10 @@ public class Triangle extends Geometry {
         return new Point3D(_p3);
     }
 
+    public Color getEmission() {
+        return new Color(_emission.getRed(),_emission.getGreen(), _emission.getBlue());
+    }
+
     //setters
     public void setP1(Point3D _p1) {
         this._p1 = _p1;
@@ -58,10 +73,18 @@ public class Triangle extends Geometry {
         this._p3 = _p3;
     }
 
+    public void setEmission(Color newEmission){
+        this._emission = newEmission;
+    }
+
+    public void setEmission(int r, int g, int b){
+        this._emission = new Color(r,g,b);
+    }
+
 
     //edit
-    public List<Point3D> findIntersections(Ray ray){
-        List<Point3D> pointList = new ArrayList<>();                             //Declaring list and camera ray
+    public List<GeoPoint> findIntersections(Ray ray){
+        List<GeoPoint> pointList = new ArrayList<>();                            //Declaring list and camera ray
         Vector cameraVector = ray.getDirection().normalize();                    //variables.
         Point3D cameraOrigin = ray.get00P();
         if(getNormal(new Point3D()).dotProduct(cameraVector)==0)                 //If triangle normal and camera
@@ -93,7 +116,7 @@ public class Triangle extends Geometry {
             return null;
 
         //Return the intersection point of the ray with the triangle.
-        pointList.add(cameraOrigin.add(cameraVector.scale(t)));
+        pointList.add(new GeoPoint(this,cameraOrigin.add(cameraVector.scale(t))));
         return pointList;
     }
 
@@ -106,11 +129,14 @@ public class Triangle extends Geometry {
     //equals override
     @Override
     public boolean equals(Object otherTriangle) {
-        return (this._p1.equals(((Triangle)otherTriangle).getP1())&&this._p2.equals(((Triangle)otherTriangle).getP2())&&this._p3.equals(((Triangle)otherTriangle).getP3()));
+        return (this._p1.equals(((Triangle)otherTriangle)._p1)&&
+                this._p2.equals(((Triangle)otherTriangle)._p2)&&
+                this._p3.equals(((Triangle)otherTriangle)._p3)&&
+                this._emission==((Triangle)otherTriangle)._emission);
     }
 
     @Override
     public String toString() {
-        return getP1() + " " + getP2() + " " + getP3();
+        return _p1 + " " + _p2 + " " + _p3 + " " + _emission;
     }
 }

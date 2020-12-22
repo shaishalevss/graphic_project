@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 //import static org.junit.jupiter.api.Assertions.*;
 
+import Geometries.GeoPoint;
 import org.junit.jupiter.api.Test;
 
 import Geometries.Plane;
@@ -11,6 +12,10 @@ import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Util;
 import Primitives.Vector;
+
+import java.util.ArrayList;
+import java.util.List;
+
 //import geometries.*;
 class TestPlane {
     @Test
@@ -28,7 +33,7 @@ class TestPlane {
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray into plane
-        assertEquals("Bad plane intersection", Util.listOf(new Point3D(1, 0, 0)),
+        assertEquals("Bad plane intersection", Util.listOf(new GeoPoint(pl,new Point3D(1, 0, 0))),
                 pl.findIntersections(new Ray(new Point3D(0.5, 0, 0), new Vector(1, 0, 0))));
 
         // TC02: Ray out of plane
@@ -46,7 +51,7 @@ class TestPlane {
 
 
         // TC13: Orthogonal ray into plane
-        assertEquals("Bad plane intersection", Util.listOf( new Point3D(1d / 3, 1d / 3, 1d / 3)),
+        assertEquals("Bad plane intersection", Util.listOf(new GeoPoint(pl, new Point3D(1d / 3, 1d / 3, 1d / 3))),
                 pl.findIntersections(new Ray(new Point3D(1, 1, 1), new Vector(-1, -1, -1))));
 
         // TC14: Orthogonal ray out of plane
