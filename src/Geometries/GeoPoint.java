@@ -36,12 +36,4 @@ public class GeoPoint {
         GeoPoint oth = (GeoPoint)obj;
         return this.geometry == oth.geometry && this.point.equals(oth.point);
     }
-
-    @Override
-    public String toString() {
-        return "GeoPoint{" +
-                "geometry=" + geometry +
-                ", point=" + point +
-                '}';
-    }
 }
