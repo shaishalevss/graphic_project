@@ -1,5 +1,7 @@
 package Scene;
+import Elements.AmbientLight;
 import Elements.Camera;
+import Elements.Light;
 import Geometries.*;
 
 import java.awt.*;
@@ -11,6 +13,8 @@ public class Scene {
     protected double _screenDistance;
     protected Color _background;
     protected Camera _camera;
+    protected AmbientLight _ambientLight;
+    protected ArrayList<Light> _lights;
     protected ArrayList<Geometry> _geometries;
 
     //constructors
@@ -92,14 +96,24 @@ public class Scene {
         this._camera = otherCamera;
     }
 
+    public void setAmbientLight(AmbientLight ambience){
+        this._ambientLight = ambience;
+    }
+
     public void setGeometries(ArrayList<Geometry> otherGeometries) {
         this._geometries = otherGeometries;
     }
 
 
+    public void addLight(Light newLight){
+        _lights.add(newLight);
+    }
+
     public void addGeometry(Geometry newGeometry) {
         _geometries.add(newGeometry);
     }
+
+
 
     //equals method
     @Override
