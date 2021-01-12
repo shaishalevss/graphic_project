@@ -24,7 +24,7 @@ class TestRenderer {
         scene.setScreenDistance(100) ;
         scene.setBackground(new Color(0,0,0));;
 
-        scene.addGeometry(new Sphere( new Point3D(0, 0, 100),50,new Color(255,0,0)));
+        scene.addGeometry(new Sphere( new Point3D(0, 50, 100),50,new Color(255,0,0)));
 
         scene.addGeometry(new Triangle(new Point3D(100, 0, 100), new Point3D(0, 100, 100), new Point3D(100, 100, 100),new Color(255,255,0)));
         scene.addGeometry(new Triangle(new Point3D(100, 0, 100), new Point3D(0, -100, 100), new Point3D(100, -100, 100),new Color(0,255,0)));
