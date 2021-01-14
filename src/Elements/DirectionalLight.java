@@ -17,7 +17,7 @@ public class DirectionalLight extends Light {
 
     public DirectionalLight(DirectionalLight otherLight) {
         this._intensity = otherLight.getIntensity(new Point3D());
-        this._direction = otherLight.getL(new Point3D());
+        this._direction = new Vector();
     }
 
     public DirectionalLight(Color intensity, Vector direction) {
@@ -33,7 +33,7 @@ public class DirectionalLight extends Light {
 
     @Override
     public Vector getL(Point3D point) {
-        return new Vector(_direction);
+        return _direction.normalize();
     }
 
 
@@ -51,6 +51,6 @@ public class DirectionalLight extends Light {
 
     public boolean equals(Object otherLight) {
         return this._direction.equals(((DirectionalLight) otherLight)._direction) &&
-                this.intensity.equals(((DirectionalLight) otherLight)._intensity);
+                this._intensity.equals(((DirectionalLight) otherLight)._intensity);
     }
 }

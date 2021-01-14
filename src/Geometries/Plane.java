@@ -1,4 +1,6 @@
 package Geometries;
+
+import Primitives.Material;
 import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
@@ -13,18 +15,21 @@ public class Plane extends Geometry {
     protected Point3D _b;
     protected Point3D _c;
     protected Color _emission;
+    protected Material _material;
 
     //constructors
     public Plane(Point3D _q, Vector _n) {
         this._q = _q;
         this._n = _n;
         this._emission = Color.black;
+        this._material = new Material();
     }
 
     public Plane(Point3D _q, Vector _n, Color emission) {
         this._q = _q;
         this._n = _n;
         this._emission = emission;
+        this._material = new Material();
     }
 
     public Plane(Point3D _q, Point3D _b, Point3D _c) {
@@ -33,6 +38,7 @@ public class Plane extends Geometry {
         this._c = _c;
         this._n = getNormal(new Point3D());
         this._emission = Color.black;
+        this._material = new Material();
     }
 
     public Plane(Point3D _q, Point3D _b, Point3D _c, Color emission) {
@@ -41,23 +47,26 @@ public class Plane extends Geometry {
         this._c = _c;
         this._n = getNormal(new Point3D());
         this._emission = emission;
+        this._material = new Material();
     }
 
-    public Plane(){
+    public Plane() {
         this._q = new Point3D();
         this._n = new Vector();
         this._emission = Color.black;
+        this._material = new Material();
     }
 
-    public Plane(Plane otherPlane){
+    public Plane(Plane otherPlane) {
         this._q = otherPlane.getQ();
-        if(!otherPlane._n.equals(new Vector()))
+        if (!otherPlane._n.equals(new Vector()))
             this._n = otherPlane.getN();
         else {
             this._b = new Point3D(otherPlane._b);
             this._c = new Point3D(otherPlane._c);
         }
         this._emission = otherPlane.getEmission();
+        this._material = otherPlane.getMaterial();
     }
 
     //getters
@@ -70,8 +79,13 @@ public class Plane extends Geometry {
     }
 
     public Color getEmission() {
-        return new Color(_emission.getRed(),_emission.getGreen(), _emission.getBlue());
+        return new Color(_emission.getRed(), _emission.getGreen(), _emission.getBlue());
     }
+
+    public Material getMaterial() {
+        return new Material(this._material.getKd(),this._material.getKs(),this._material.getShininess());
+    }
+
 
     //setters
     public void setQ(Point3D _q) {
@@ -82,51 +96,57 @@ public class Plane extends Geometry {
         this._n = _n;
     }
 
-    public void setEmission(Color newEmission){
+    public void setEmission(Color newEmission) {
         this._emission = newEmission;
     }
 
-    public void setEmission(int r, int g, int b){
-        this._emission = new Color(r,g,b);
+    public void setEmission(int r, int g, int b) {
+        this._emission = new Color(r, g, b);
     }
 
+    public void setMaterial(Material newMaterial) {
+        this._material = newMaterial;
+    }
+
+    ;
+
     //edit
-    public List<GeoPoint> findIntersections(Ray ray){
+    public List<GeoPoint> findIntersections(Ray ray) {
         List<GeoPoint> pointList = new ArrayList<GeoPoint>();                //Declaring point list and camera ray
         Vector v = ray.getDirection().normalize();                         //variables.
         Point3D p0 = ray.get00P();
 
-        if(this._q.equals(ray.get00P()))                                   //If the camera is in the plane return null.
+        if (this._q.equals(ray.get00P()))                                   //If the camera is in the plane return null.
             return null;
 
-        if(getNormal(new Point3D()).dotProduct(v) == 0)                    //If triangle normal and camera
+        if (getNormal(new Point3D()).dotProduct(v) == 0)                    //If triangle normal and camera
             return null;                                                   //vector are perpendicular return null.
 
         //Calculate distance from camera to plane.
-        double t = (getNormal(new Point3D()).dotProduct((_q.subtract(p0))))/(getNormal(new Point3D()).dotProduct(v));
+        double t = (getNormal(new Point3D()).dotProduct((_q.subtract(p0)))) / (getNormal(new Point3D()).dotProduct(v));
 
-        if(t <= 0)                                                         //if vector is facing away return null.
+        if (t <= 0)                                                         //if vector is facing away return null.
             return null;
 
         //Return intersection point of the ray with the plane.
-        pointList.add(new GeoPoint(this,p0.add(v.scale(t))));
+        pointList.add(new GeoPoint(this, p0.add(v.scale(t))));
         return pointList;
     }
 
-    public Vector getNormal(Point3D point){
-        if(_n!=null)
+    public Vector getNormal(Point3D point) {
+        if (_n != null)
             return getN();
         Vector a = new Vector(_b.subtract(_q));
         Vector b = new Vector(_c.subtract(_q));
-        return new Vector ((a.crossProduct(b)).normalize());
+        return new Vector((a.crossProduct(b)).normalize());
     }
 
     //equals methods override
     @Override
     public boolean equals(Object otherPlane) {
-        return (this._q.equals(((Plane)otherPlane)._q)&&
-                this._n.equals(((Plane)otherPlane)._n)&&
-                this._emission.equals(((Plane)otherPlane)._emission));
+        return (this._q.equals(((Plane) otherPlane)._q) &&
+                this._n.equals(((Plane) otherPlane)._n) &&
+                this._emission.equals(((Plane) otherPlane)._emission));
     }
 
     @Override

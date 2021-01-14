@@ -2,6 +2,7 @@ package Primitives;
 
 import Geometries.GeoPoint;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public abstract class Util {
         // 2. Shift all 52 bits to the right (removing mantissa)
         // 3. Zero the sign of number bit by mask 0x7FF
         // 4. "De-normalize" the exponent by subtracting 1023
-        return (int)((Double.doubleToRawLongBits(num) >> 52) & 0x7FFL) - 1023;
+        return (int) ((Double.doubleToRawLongBits(num) >> 52) & 0x7FFL) - 1023;
     }
 
     /**
@@ -48,16 +49,54 @@ public abstract class Util {
         return getExp(number) < ACCURACY ? 0.0 : number;
     }
 
+    public static Color addColor(Color colorA, Color colorB) {
+        int r = colorA.getRed() + colorB.getRed();
+        int g = colorA.getGreen() + colorB.getGreen();
+        int b = colorA.getBlue() + colorB.getBlue();
+        if (r > 255)
+            r = 255;
+        if (g > 255)
+            g = 255;
+        if (b > 255)
+            b = 255;
+        return new Color(r, g, b);
+    }
+
+    public static Color vecToColor(Vector vec) {
+        double red = vec.getHead().getX().getCoordinate();
+        double green = vec.getHead().getY().getCoordinate();
+        double blue = vec.getHead().getZ().getCoordinate();
+
+        if (red < 0)
+            red = 0;
+        else if (red > 255)
+            red = 255;
+        if (green < 0)
+            green = 0;
+        else if (green > 255)
+            green = 255;
+        if (blue < 0)
+            blue = 0;
+        else if (blue > 255)
+            blue = 255;
+
+        return new Color((int) red, (int) green, (int) blue);
+    }
+
+    public static Vector colorToVec(Color color) {
+        return new Vector(color.getRed(),color.getGreen(),color.getBlue());
+    }
+
     public static List<Point3D> listOf(Point3D... vertices) {
-        List<Point3D> lst=new ArrayList<Point3D>();
-        for(int i =0; i <vertices.length; i++)
+        List<Point3D> lst = new ArrayList<Point3D>();
+        for (int i = 0; i < vertices.length; i++)
             lst.add(vertices[i]);
         return lst;
     }
 
     public static List<GeoPoint> listOf(GeoPoint... vertices) {
-        List<GeoPoint> lst=new ArrayList<GeoPoint>();
-        for(int i =0; i <vertices.length; i++)
+        List<GeoPoint> lst = new ArrayList<GeoPoint>();
+        for (int i = 0; i < vertices.length; i++)
             lst.add(vertices[i]);
         return lst;
     }

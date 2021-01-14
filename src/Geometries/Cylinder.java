@@ -1,4 +1,5 @@
 package Geometries;
+import Primitives.Material;
 import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
@@ -11,6 +12,7 @@ public class Cylinder extends Geometry {
     protected Ray _axis;
     protected double _height;
     protected Color _emission;
+    protected Material _material;
 
     //constructors
     public Cylinder(double _radius, Ray _axis, double _height) {
@@ -58,6 +60,11 @@ public class Cylinder extends Geometry {
         return new Color(_emission.getRed(),_emission.getGreen(), _emission.getBlue());
     }
 
+    public Material getMaterial() {
+        return new Material(this._material.getKd(), this._material.getKs(), this._material.getShininess());
+    }
+
+
     //setters
     public void setRadius(double radius) {
         this._radius = radius;
@@ -78,6 +85,11 @@ public class Cylinder extends Geometry {
     public void setEmission(int r, int g, int b){
         this._emission = new Color(r,g,b);
     }
+
+    public void setMaterial(Material newMaterial) {
+        this._material = newMaterial;
+    }
+
 
     //edit
     public List<GeoPoint> findIntersections(Ray ray){

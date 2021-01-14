@@ -1,8 +1,10 @@
 package Scene;
+
 import Elements.AmbientLight;
 import Elements.Camera;
 import Elements.Light;
 import Geometries.*;
+import Primitives.Point3D;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -18,11 +20,12 @@ public class Scene {
     protected ArrayList<Geometry> _geometries;
 
     //constructors
-    public Scene(String name, Double distance, Color backgroundColor, Camera camera, ArrayList<Geometry> geometries) {
+    public Scene(String name, Double distance, Color backgroundColor, Camera camera, ArrayList<Light> lights, ArrayList<Geometry> geometries) {
         this._name = name;
         this._screenDistance = distance;
         this._background = backgroundColor;
         this._camera = camera;
+        this._lights = lights;
         this._geometries = geometries;
     }
 
@@ -31,6 +34,7 @@ public class Scene {
         this._screenDistance = 0;
         this._background = Color.black;
         this._camera = new Camera();
+        this._lights = new ArrayList<Light>();
         this._geometries = new ArrayList<Geometry>();
     }
 
@@ -39,6 +43,7 @@ public class Scene {
         this._screenDistance = 0;
         this._background = Color.black;
         this._camera = new Camera();
+        this._lights = new ArrayList<Light>();
         this._geometries = new ArrayList<Geometry>();
     }
 
@@ -47,6 +52,7 @@ public class Scene {
         this._screenDistance = otherScene._screenDistance;
         this._background = otherScene.getBackgroundColor();
         this._camera = otherScene.getCamera();
+        this._lights = otherScene.getLights();
         this._geometries = otherScene.getGeometries();
     }
 
@@ -61,11 +67,19 @@ public class Scene {
     }
 
     public Color getBackgroundColor() {
-        return new Color(_background.getRed(),_background.getGreen(), _background.getBlue());
+        return new Color(_background.getRed(), _background.getGreen(), _background.getBlue());
     }
 
     public Camera getCamera() {
         return new Camera(_camera);
+    }
+
+    public AmbientLight getAmbience() {
+        return new AmbientLight(_ambientLight);
+    }
+
+    public ArrayList<Light> getLights() {
+        return _lights;
     }
 
     public ArrayList<Geometry> getGeometries() {
@@ -85,7 +99,7 @@ public class Scene {
     }
 
     public void setBackground(int r, int g, int b) {
-        this._background = new Color (r,g,b);
+        this._background = new Color(r, g, b);
     }
 
     public void setBackground(Color newColor) {
@@ -96,8 +110,12 @@ public class Scene {
         this._camera = otherCamera;
     }
 
-    public void setAmbientLight(AmbientLight ambience){
+    public void setAmbientLight(AmbientLight ambience) {
         this._ambientLight = ambience;
+    }
+
+    public void setLights(ArrayList<Light> otherLights) {
+        this._lights = otherLights;
     }
 
     public void setGeometries(ArrayList<Geometry> otherGeometries) {
@@ -105,7 +123,7 @@ public class Scene {
     }
 
 
-    public void addLight(Light newLight){
+    public void addLight(Light newLight) {
         _lights.add(newLight);
     }
 
@@ -114,13 +132,12 @@ public class Scene {
     }
 
 
-
     //equals method
     @Override
     public boolean equals(Object otherScene) {
-        return this._geometries.equals(((Scene)otherScene)._geometries)&&
-                this._screenDistance==((Scene) otherScene)._screenDistance&&
-                this._background.equals(((Scene) otherScene)._background)&&
+        return this._geometries.equals(((Scene) otherScene)._geometries) &&
+                this._screenDistance == ((Scene) otherScene)._screenDistance &&
+                this._background.equals(((Scene) otherScene)._background) &&
                 this._name.equals(((Scene) otherScene)._name);
     }
 

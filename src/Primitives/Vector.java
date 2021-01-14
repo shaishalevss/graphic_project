@@ -4,6 +4,10 @@ public class Vector {
     protected Point3D _head;
 
     //constructors
+    public Vector(int x, int y, int z) {
+        this._head = new Point3D(x,y,z);
+    }
+
     public Vector(Point3D head) {
         this._head = new Point3D(head);
     }

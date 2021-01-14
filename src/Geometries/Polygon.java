@@ -1,4 +1,5 @@
 package Geometries;
+import Primitives.Material;
 import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
@@ -29,6 +30,10 @@ public class Polygon extends Geometry {
         return new Color(_emission.getRed(),_emission.getGreen(), _emission.getBlue());
     }
 
+    public Material getMaterial() {
+        return new Material(this._material.getKd(), this._material.getKs(), this._material.getShininess());
+    }
+
     public List<Point3D> getPoints() {
         return _points;
     }
@@ -36,6 +41,10 @@ public class Polygon extends Geometry {
     //setters
     public void setPoints(List<Point3D> _points) {
         this._points = _points;
+    }
+
+    public void setMaterial(Material newMaterial) {
+        this._material = newMaterial;
     }
 
 

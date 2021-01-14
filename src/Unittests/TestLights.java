@@ -52,7 +52,7 @@ class TestLights {
 
         ImageWriter imageWriter = new ImageWriter("sphereDirectional", 500, 500, 500, 500);
 
-        Renderer render = new Renderer(imageWriter, scene);
+        Renderer render = new Renderer(scene, imageWriter);
         render.renderImage();
     }
 

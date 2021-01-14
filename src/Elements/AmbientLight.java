@@ -10,19 +10,24 @@ public class AmbientLight extends Light {
     protected double kA = 0.1;
 
 
-    public AmbientLight() {
-        this._intensity = Color.BLACK;
-    }
 
     public AmbientLight(Color color, double kA) {
         this._intensity = color;
         this.kA = kA;
     }
+    public AmbientLight() {
+        this._intensity = Color.BLACK;
+    }
+
+    public AmbientLight(AmbientLight otherLight) {
+        this._intensity = new Color(otherLight._intensity.getRed(),otherLight._intensity.getGreen(),otherLight._intensity.getBlue());
+        this.kA = otherLight.kA;
+    }
 
 
     @Override
     public Color getIntensity(Point3D point) {
-        return new Color(_intensity.getRed(), _intensity.getGreen(), _intensity.getBlue());
+        return new Color((int)(_intensity.getRed()*kA), (int)(_intensity.getGreen()*kA), (int)(_intensity.getBlue()*kA));
     }
 
     @Override
@@ -49,6 +54,6 @@ public class AmbientLight extends Light {
 
     public boolean equals(Object otherAmbience) {
         return this.kA == ((AmbientLight) otherAmbience).kA &&
-                this.intensity.equals(((AmbientLight) otherAmbience)._intensity);
+                this._intensity.equals(((AmbientLight) otherAmbience)._intensity);
     }
 }

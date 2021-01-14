@@ -39,12 +39,14 @@ public class PointLight extends Light {
 
     @Override
     public Color getIntensity(Point3D point) {
-        return new Color(intensity.getRed(), intensity.getGreen(), intensity.getBlue());
+        double distance = _position.distance(point);
+        double denominator = _kc + _kl * distance + _kq * distance * distance;
+        return new Color((int)(_intensity.getRed()/denominator), (int)(_intensity.getGreen()/denominator), (int)(_intensity.getBlue()/denominator));
     }
 
     @Override
     public Vector getL(Point3D point) {
-        return new Vector();
+        return point.subtract(_position);
     }
 
     public Point3D getPosition() {
@@ -90,7 +92,7 @@ public class PointLight extends Light {
 
     public boolean equals(Object otherLight) {
         return this._position.equals(((PointLight) otherLight)._position) &&
-                this.intensity.equals(((PointLight) otherLight)._intensity) &&
+                this._intensity.equals(((PointLight) otherLight)._intensity) &&
                 this._kc == ((PointLight) otherLight)._kc &&
                 this._kl == ((PointLight) otherLight)._kl &&
                 this._kq == ((PointLight) otherLight)._kq;

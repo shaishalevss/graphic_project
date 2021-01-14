@@ -11,7 +11,7 @@ import Primitives.*;
 import Renderer.*;
 import Scene.Scene;
 
-public class testLight2 {
+public class TestLight2 {
 
 
     @Test
@@ -105,7 +105,7 @@ public class testLight2 {
         scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));
 
 
-        Sphere sphere = new Sphere(, 500, new Color(0, 0, 100));
+        Sphere sphere = new Sphere(new Point3D(0.0, 0.0, 1000), 500, new Color(0, 0, 100));
         Material m=new Material(1,1,20);
         sphere.setMaterial(m);
         scene.addGeometry(sphere);
@@ -193,7 +193,7 @@ public class testLight2 {
         Material m1=new Material(1,1,1);
         Material m2=new Material(1,1,20);
 
-        Sphere sphere = new Sphere(500, new Point3D(0.0, 0.0, 1000),new Color(0, 0, 100));
+        Sphere sphere = new Sphere(new Point3D(0.0, 0.0, 1000), 500, new Color(0, 0, 100));
         sphere.setMaterial(m2);
 
         Triangle triangle1 = new Triangle(new Point3D(  3500,  3500, 2000),

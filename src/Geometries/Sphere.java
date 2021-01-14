@@ -1,5 +1,6 @@
 package Geometries;
 
+import Primitives.Material;
 import Primitives.Point3D;
 import Primitives.Ray;
 import Primitives.Vector;
@@ -12,31 +13,44 @@ public class Sphere extends Geometry {
     protected Point3D _center;
     protected double _radius;
     protected Color _emission;
+    protected Material _material;
 
     //constructors
     public Sphere(Point3D _center, double _radius) {
         this._center = _center;
         this._radius = _radius;
         this._emission = Color.black;
+        this._material = new Material();
     }
 
     public Sphere(Point3D _center, double _radius, Color emission) {
         this._center = _center;
         this._radius = _radius;
         this._emission = emission;
+        this._material = new Material();
+    }
+
+    public Sphere(Point3D _center, double _radius, Color emission, Material material) {
+        this._center = _center;
+        this._radius = _radius;
+        this._emission = emission;
+        this._material = material;
     }
 
     public Sphere() {
         this._center = new Point3D();
         this._radius = 0.0;
         this._emission = Color.black;
+        this._material = new Material();
     }
 
     public Sphere(Sphere otherSphere) {
         this._center = otherSphere.getCenter();
         this._radius = otherSphere.getRadius();
         this._emission = otherSphere.getEmission();
+        this._material = otherSphere.getMaterial();
     }
+
 
     //getters
     public Point3D getCenter() {
@@ -49,6 +63,10 @@ public class Sphere extends Geometry {
 
     public Color getEmission() {
         return new Color(_emission.getRed(), _emission.getGreen(), _emission.getBlue());
+    }
+
+    public Material getMaterial() {
+        return new Material(this._material.getKd(), this._material.getKs(), this._material.getShininess());
     }
 
     //setters
@@ -66,6 +84,10 @@ public class Sphere extends Geometry {
 
     public void setEmission(int r, int g, int b) {
         this._emission = new Color(r, g, b);
+    }
+
+    public void setMaterial(Material newMaterial) {
+        this._material = newMaterial;
     }
 
     //edit
@@ -115,7 +137,7 @@ public class Sphere extends Geometry {
         Vector cameraVector = ray.getDirection().normalize();
         Vector vectorU = this._center.subtract(cameraOrigin);
         double tm = cameraVector.dotProduct(vectorU);
-        double d = Math.sqrt((vectorU.length()*vectorU.length()) - tm*tm);
+        double d = Math.sqrt((vectorU.length() * vectorU.length()) - tm * tm);
         if (d > _radius) {
             return null;
         } else if (d == _radius) {
@@ -124,7 +146,7 @@ public class Sphere extends Geometry {
                 points.add(new GeoPoint(this, outerPoint));
             }
         } else {
-            double th = Math.sqrt(_radius*_radius - d*d);
+            double th = Math.sqrt(_radius * _radius - d * d);
             double t1 = tm + th;
             double t2 = tm - th;
             if (t1 > 0) {
@@ -143,7 +165,7 @@ public class Sphere extends Geometry {
     }
 
     public Vector getNormal(Point3D point) {
-        return new Vector(point.subtract(_center));
+        return (point.subtract(_center)).normalize();
     }
 
     //equal method override
