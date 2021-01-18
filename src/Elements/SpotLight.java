@@ -52,6 +52,13 @@ public class SpotLight extends PointLight {
         double green = (_intensity.getGreen() * Math.max(0, _direction.normalize().dotProduct(l)))/denominator;
         double blue = (_intensity.getBlue() * Math.max(0, _direction.normalize().dotProduct(l)))/denominator;
         System.out.println(red+" "+green+" "+blue);
+        if(red>255)
+            red=255;
+        if(blue>255)
+            blue=255;
+        if(green>255)
+            green=255;
+
         return new Color((int) red, (int) green, (int) blue);
     }
 

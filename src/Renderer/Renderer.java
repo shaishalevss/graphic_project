@@ -17,6 +17,7 @@ import java.util.List;
 public class Renderer {
     protected Scene _scene;
     protected ImageWriter _imageWriter;
+    private static final double EPS=0.1;
 
     public Renderer(Scene scene, ImageWriter imageWriter) {
         this._scene = scene;
@@ -124,66 +125,83 @@ public class Renderer {
 //        return new Color((int) red, (int) green, (int) blue);
     }
 
-    public Color calcSpecularComp(double ks, Vector cameraVector, Vector normal, Vector l, double shininess, Color intensity) {
-        l = l.scale(-1);
-        Vector color = new Vector(intensity.getRed(), intensity.getGreen(), intensity.getBlue());
-
-        Vector r = l.subtract(normal.scale(l.dotProduct(normal)));
-
-        if (Math.pow(cameraVector.dotProduct(r),shininess) == 0)
-            return Color.BLACK;
-
-        color = color.scale(ks * Math.pow(cameraVector.dotProduct(r),shininess));
-
-        return Util.vecToColor(color);
-
-
-
-
-
-
-
-
-
-
-
-
-////        System.out.println(normal.length());
-////        System.out.println(cameraVector.length());
-////        normal = normal.normalize();
-////        cameraVector = cameraVector.normalize();
+//    public Color calcSpecularComp(double ks, Vector cameraVector, Vector normal, Vector l, double shininess, Color intensity) {
+//        l = l.scale(-1);
+//        Vector color = new Vector(intensity.getRed(), intensity.getGreen(), intensity.getBlue());
 //
-////        l = l.scale(-1);
-////        l = l.normalize();
-////        cameraVector = cameraVector.scale(-1);
-////        System.out.println(cameraVector.length()+normal.length()+l.length());
-////        Vector r;
-////        if ((l.dotProduct(normal))==0)
-////            r = l;
-////        else
-////        Vector  r = l.subtract(normal.scale(-2 * (l.dotProduct(normal))));
-////        System.out.println(cameraVector.dotProduct(r));
-//        Vector r = l.subtract(normal.scale(2 * l.dotProduct(normal)));
-//        double red = ks * (Math.pow(cameraVector.dotProduct(r), shininess)) * intensity.getRed();
-//        double green = ks * (Math.pow(cameraVector.dotProduct(r), shininess)) * intensity.getGreen();
-//        double blue = ks * (Math.pow(cameraVector.dotProduct(r), shininess)) * intensity.getBlue();
+//        Vector r = l.subtract(normal.scale(l.dotProduct(normal)));
+//
+//        if (Math.pow(cameraVector.dotProduct(r),shininess) == 0)
+//            return Color.BLACK;
+//
+//        color = color.scale(ks * Math.pow(cameraVector.dotProduct(r),shininess));
+//
+//        return Util.vecToColor(color);
+//
+//
+//
+//////        System.out.println(normal.length());
+//////        System.out.println(cameraVector.length());
+//////        normal = normal.normalize();
+//////        cameraVector = cameraVector.normalize();
+////
+//////        l = l.scale(-1);
+//////        l = l.normalize();
+//////        cameraVector = cameraVector.scale(-1);
+//////        System.out.println(cameraVector.length()+normal.length()+l.length());
+//////        Vector r;
+//////        if ((l.dotProduct(normal))==0)
+//////            r = l;
+//////        else
+//////        Vector  r = l.subtract(normal.scale(-2 * (l.dotProduct(normal))));
+//////        System.out.println(cameraVector.dotProduct(r));
+////        Vector r = l.subtract(normal.scale(2 * l.dotProduct(normal)));
+////        double red = ks * (Math.pow(cameraVector.dotProduct(r), shininess)) * intensity.getRed();
+////        double green = ks * (Math.pow(cameraVector.dotProduct(r), shininess)) * intensity.getGreen();
+////        double blue = ks * (Math.pow(cameraVector.dotProduct(r), shininess)) * intensity.getBlue();
 ////        System.out.println(red+" "+green+" "+blue);
 //
 //
-//        if (red < 0)
-//            red = 0;
-//        else if (red > 255)
-//            red = 255;
-//        if (green < 0)
-//            green = 0;
-//        else if (green > 255)
-//            green = 255;
-//        if (blue < 0)
-//            blue = 0;
-//        else if (blue > 255)
-//            blue = 255;
-//
-//        return new Color((int) red, (int) green, (int) blue);
+////        if (red < 0)
+////            red = 0;
+////        else if (red > 255)
+////            red = 255;
+////        if (green < 0)
+////            green = 0;
+////        else if (green > 255)
+////            green = 255;
+////        if (blue < 0)
+////            blue = 0;
+////        else if (blue > 255)
+////            blue = 255;
+////
+////        return new Color((int) red, (int) green, (int) blue);
+//    }
+
+
+
+    private Color calcSpecularComp(double ks, Vector v, Vector normal, Vector l, int shininess,
+                                   Color intensity) {
+        Vector r = l.subtract(normal.scale(2*(l.dotProduct(normal)))).normalize();
+
+        double scalar = ks*(Math.pow(v.dotProduct(r),shininess));
+        return scaleColor(intensity, scalar);
+    }
+
+    public static Color scaleColor(Color a, double scale) {
+        int red = (int)(a.getRed()*scale);
+        int red1 = red >= 255 ? 255 : red;
+        red1 = red1 < 0 ? 0:red1;
+
+        int green = (int)(a.getGreen()*scale);
+        int green1 = green >= 255 ? 255 : green;
+        green1 = green1 < 0 ? 0:green1;
+
+        int blue = (int)(a.getBlue()*scale);
+        int blue1 = blue >= 255 ? 255 : blue;
+        blue1 = blue1 < 0 ? 0:blue1;
+
+        return new Color(red1, green1, blue1);
     }
 
     private Color calcColor(GeoPoint gp) {
@@ -198,24 +216,26 @@ public class Renderer {
 //        double specularG = 0;
 //        double specularB = 0;
         for (Light light : _scene.getLights()) {
-            Color diffuse = calcDiffusiveComp(gp.getGeometry().getMaterial().getKd(),
-                    gp.getGeometry().getNormal(gp.getPoint()).normalize(),
-                    light.getL(gp.getPoint()).normalize(),
-                    light.getIntensity(gp.getPoint()));
-            diffuseLight = Util.addColor(diffuseLight, diffuse);
+            if (!shaded(light, gp.getPoint(), light.getL(gp.getPoint()), gp.getGeometry().getNormal(gp.getPoint()))) {
+                Color diffuse = calcDiffusiveComp(gp.getGeometry().getMaterial().getKd(),
+                        gp.getGeometry().getNormal(gp.getPoint()).normalize(),
+                        light.getL(gp.getPoint()).normalize(),
+                        light.getIntensity(gp.getPoint()));
+                diffuseLight = Util.addColor(diffuseLight, diffuse);
 //            System.out.println(diffuse);
 
-            Color specular = calcSpecularComp(gp.getGeometry().getMaterial().getKs(),
-                    new Vector(_scene.getCamera().getProjectionCenter().subtract(gp.getPoint())).normalize(),
-                    gp.getGeometry().getNormal(gp.getPoint()).normalize(),
-                    light.getL(gp.getPoint()).normalize(),
-                    gp.getGeometry().getMaterial().getShininess(),
-                    light.getIntensity(gp.getPoint()));
-            specularLight = Util.addColor(specularLight, specular);
+                Color specular = calcSpecularComp(gp.getGeometry().getMaterial().getKs(),
+                        new Vector(_scene.getCamera().getProjectionCenter().subtract(gp.getPoint())).normalize(),
+                        gp.getGeometry().getNormal(gp.getPoint()).normalize(),
+                        light.getL(gp.getPoint()).normalize(),
+                        gp.getGeometry().getMaterial().getShininess(),
+                        light.getIntensity(gp.getPoint()));
+                specularLight = Util.addColor(specularLight, specular);
 //            specularR += specular.getRed();
 //            specularG += specular.getGreen();
 //            specularB += specular.getBlue();
 //            System.out.println(specular);
+            }
         }
 //        int finalR = (int) (ambientLight.getRed() + emissionLight.getRed() + diffuseR + specularR);
 //        int finalG = (int) (ambientLight.getGreen() + emissionLight.getGreen() + diffuseG + specularG);
@@ -232,6 +252,7 @@ public class Renderer {
 //            finalB=0;
 //        else if(finalB>255)
 //            finalB=255;
+
         Color finalColor = Color.BLACK;
         finalColor = Util.addColor(finalColor, ambientLight);
         finalColor = Util.addColor(finalColor, emissionLight);
@@ -248,4 +269,16 @@ public class Renderer {
 //        return ((Geometry) gp.getGeometry()).getEmission();
     }
 
+
+    private boolean shaded(Light light,Point3D point,Vector l,Vector n)
+    {
+        Vector lightDirection=l.scale(-1);
+        Vector epsVector=n.scale(EPS);
+        Point3D newPoint=point.add(epsVector);
+        Ray shadowRay=new Ray(newPoint,lightDirection);
+        List<GeoPoint> intersectionPoints=getSceneRayIntersections(shadowRay);
+        if (intersectionPoints.isEmpty())
+            return false;
+        return true;
+    }
 }

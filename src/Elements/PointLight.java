@@ -41,7 +41,22 @@ public class PointLight extends Light {
     public Color getIntensity(Point3D point) {
         double distance = _position.distance(point);
         double denominator = _kc + _kl * distance + _kq * distance * distance;
-        return new Color((int)(_intensity.getRed()/denominator), (int)(_intensity.getGreen()/denominator), (int)(_intensity.getBlue()/denominator));
+
+        double red = (int)(_intensity.getRed()/denominator);
+        double green = (int)(_intensity.getGreen()/denominator);
+        double blue = (int)(_intensity.getBlue()/denominator);
+
+        if(red>255) {
+            red = 255;
+        }
+        if(blue>255) {
+            blue = 255;
+        }
+        if(green>255) {
+            green = 255;
+        }
+
+        return new Color((int)red, (int)green, (int)blue);
     }
 
     @Override

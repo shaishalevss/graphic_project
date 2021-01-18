@@ -48,11 +48,12 @@ class TestRenderer {
         Scene scene = new Scene("Test scene");
         scene.setCamera(new Camera(new Point3D(), new Vector(0, 0, 1), new Vector(0, -1, 0)));
         scene.setScreenDistance(300);
-        scene.setBackground(new Color(100, 149, 237));
-        scene.setAmbientLight(new AmbientLight(Color.WHITE,0.15));
+        scene.setBackground(new Color(	255,99,71));
+        scene.setAmbientLight(new AmbientLight(Color.red,0.2));
         scene.addLight(new DirectionalLight(new Color(100, 100, 255), new Vector(3,-1,2)));
         scene.addLight(new DirectionalLight(new Color(255, 100, 100), new Vector(-3,1,-2)));
-        scene.addLight(new PointLight(new Color(150, 100, 100), new Point3D(-100, 200, -250),  1, 0.00001, 0.000005));
+        scene.addLight(new PointLight(new Color(180, 50, 50), new Point3D(-200, 300, -250),  1, 0.00001, 0.000005));
+
 
 //        scene.addGeometry(new Triangle(new Point3D(100, 0, 100), new Point3D(0, 100, 100), new Point3D(100, 100, 100),new Color(255,255,0)));
 //        scene.addGeometry(new Triangle(new Point3D(100, 0, 100), new Point3D(0, -100, 100), new Point3D(100, -100, 100),new Color(0,255,0)));
@@ -66,7 +67,7 @@ class TestRenderer {
         scene.addGeometry(new Sphere(new Point3D(-197, -170, 280), 140, new Color(0, 0, 139),new Material(1,1,100)));
 
         //hat
-        scene.addGeometry(new Sphere(new Point3D(0, -150, 300), 150, new Color(0, 0, 0),new Material(1,1,100)));
+        scene.addGeometry(new Sphere(new Point3D(0, -150, 275), 150, new Color(0, 0, 0),new Material(1,1,100)));
 
         //left side down
         scene.addGeometry(new Sphere(new Point3D(-220, 190, 300), 150, new Color(0, 255, 255),new Material(1,1,100)));
@@ -96,7 +97,7 @@ class TestRenderer {
         scene.addGeometry(new Sphere(new Point3D(0, 0, 110), 10, new Color(220, 20, 60),new Material(1,1,100)));
 
 
-        ImageWriter imageWriter = new ImageWriter("imageONe", 1920, 1080, 1920, 1080);
+        ImageWriter imageWriter = new ImageWriter("imageONe2", 1920, 1080, 1920, 1080);
         Renderer render = new Renderer(scene, imageWriter);
 
         render.renderImage();
